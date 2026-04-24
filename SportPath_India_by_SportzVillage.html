@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportPath India — Your Sports Career, Mapped</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   SPORTZ VILLAGE BRAND PALETTE (from logo)
+   Primary:   #E31E24 (SV Red   — "SPORTZ")
+   Brand 2:   #2A5CA8 (SV Blue  — "VILLAGE")
+   Dark:      #14295E (Deep brand navy for dark surfaces)
+   Mid dark:  #1F3A7A (Slate blue)
+   Accent:    #00A651 (PathwayZ Green — retained)
+   White:     #FFFFFF
+   Light bg:  #F5F7FA (Cool off-white)
+   Text:      #14295E
+   Muted:     #6B7285
+   Border:    #DDE2EB
+   ══════════════════════════════════════════ */
+:root {
+  --sv-red: #E31E24;
+  --sv-red-dark: #B8181D;
+  --sv-red-light: #FDE8E9;
+  --sv-red-mid: #F04951;
+  --sv-blue: #2A5CA8;
+  --sv-blue-dark: #1E4689;
+  --sv-blue-light: #E7EEF9;
+  --sv-navy: #14295E;
+  --sv-slate: #1F3A7A;
+  --sv-green: #00A651;
+  --sv-green-light: #E8F7EF;
+  --sv-white: #FFFFFF;
+  --sv-off-white: #F5F7FA;
+  --sv-bg: #F4F6FA;
+  --sv-text: #14295E;
+  --sv-muted: #6B7285;
+  --sv-border: #DDE2EB;
+  --sv-card: #FFFFFF;
+  --sv-shadow: 0 2px 12px rgba(20,41,94,0.08);
+  --sv-shadow-lg: 0 8px 32px rgba(20,41,94,0.12);
+  --r: 10px;
+  --r-lg: 16px;
+  font-size: 15px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--sv-bg);
+  color: var(--sv-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display {
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: -0.01em;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--sv-navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 58px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px; font-weight: 800; color: var(--sv-white);
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--sv-red); }
+.nav-links {
+  display: flex; gap: 4px;
+}
+.nav-link {
+  padding: 6px 14px; border-radius: 6px;
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.75);
+  cursor: pointer; transition: all .15s;
+  background: transparent; border: none;
+}
+.nav-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.nav-link.active { background: var(--sv-red); color: #fff; }
+.nav-cta {
+  padding: 7px 18px; border-radius: 6px;
+  background: var(--sv-red); color: #fff;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  border: none; transition: background .15s;
+}
+.nav-cta:hover { background: var(--sv-red-dark); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--sv-navy);
+  padding: 4rem 2rem 3.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(227,30,36,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(227,30,36,0.15); border: 1px solid rgba(227,30,36,0.3);
+  border-radius: 999px; padding: 5px 16px; margin-bottom: 1.25rem;
+  font-size: 12px; font-weight: 600; color: var(--sv-red);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(42px, 7vw, 72px); font-weight: 900;
+  color: var(--sv-white); line-height: 1.0;
+  margin-bottom: 1rem;
+}
+.hero h1 em {
+  color: var(--sv-red); font-style: normal;
+  display: block;
+}
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.7);
+  max-width: 560px; margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+.hero-pills {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 2.5rem;
+}
+.hero-pill {
+  padding: 6px 16px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8); font-size: 13px;
+}
+.hero-pill.red { background: rgba(227,30,36,0.15); border-color: rgba(227,30,36,0.3); color: #FF7881; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: 13px 28px; border-radius: 8px;
+  background: var(--sv-red); color: #fff;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  border: none; transition: all .15s;
+  box-shadow: 0 4px 16px rgba(227,30,36,0.35);
+}
+.btn-primary:hover { background: var(--sv-red-dark); transform: translateY(-1px); }
+.btn-secondary {
+  padding: 13px 28px; border-radius: 8px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: all .15s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.14); }
+.hero-stats {
+  display: flex; justify-content: center; gap: 3rem;
+  margin-top: 3rem; padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat {}
+.hero-stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px; font-weight: 800; color: var(--sv-red);
+}
+.hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 3rem 1.5rem; max-width: 820px; margin: 0 auto; }
+.section-title {
+  font-size: 28px; font-weight: 800; color: var(--sv-navy);
+  margin-bottom: .35rem;
+}
+.section-sub { font-size: 14px; color: var(--sv-muted); margin-bottom: 1.75rem; line-height: 1.5; }
+
+/* ── PAGE TABS ── */
+.page-tabs {
+  background: var(--sv-white); border-bottom: 1px solid var(--sv-border);
+  position: sticky; top: 58px; z-index: 90;
+  display: flex; gap: 0; overflow-x: auto;
+  padding: 0 1.5rem;
+}
+.page-tab {
+  padding: 14px 20px; font-size: 14px; font-weight: 600;
+  color: var(--sv-muted); cursor: pointer; border: none;
+  background: transparent; border-bottom: 3px solid transparent;
+  white-space: nowrap; transition: all .15s;
+}
+.page-tab:hover { color: var(--sv-navy); }
+.page-tab.active { color: var(--sv-red); border-bottom-color: var(--sv-red); }
+
+/* ── PAGE PANELS ── */
+.page-panel { display: none; }
+.page-panel.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--sv-card); border-radius: var(--r-lg);
+  border: 1px solid var(--sv-border);
+  box-shadow: var(--sv-shadow);
+  overflow: hidden;
+}
+.card-head {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 1.1rem 1.25rem; cursor: pointer;
+  transition: background .15s;
+}
+.card-head:hover { background: var(--sv-off-white); }
+.card-head.open { border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.card-body {
+  display: none; border-top: 1px solid var(--sv-border);
+  padding: 1.25rem;
+}
+.card-body.open { display: block; }
+.card-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  flex-shrink: 0; display: flex; align-items: center;
+  justify-content: center; font-size: 15px; font-weight: 700;
+}
+.card-meta { flex: 1; min-width: 0; }
+.card-name { font-size: 15px; font-weight: 600; color: var(--sv-navy); margin-bottom: 3px; }
+.card-tagline { font-size: 12px; color: var(--sv-muted); line-height: 1.4; margin-bottom: 6px; }
+.card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.chev { font-size: 11px; color: var(--sv-muted); flex-shrink: 0; margin-top: 4px; transition: transform .2s; }
+.chev.open { transform: rotate(180deg); }
+
+/* ── TAGS ── */
+.tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 999px;
+  font-weight: 500;
+}
+.tag-athlete { background: #FDE8E9; color: #8C1319; }
+.tag-intl { background: #E6F1FB; color: #0C447C; }
+.tag-industry { background: #EEEDFE; color: #3C3489; }
+.tag-gosports { background: #E8F7EF; color: #085041; }
+.tag-ogq { background: #FCEBEB; color: #A32D2D; }
+.tag-ft { background: #E6F1FB; color: #0C447C; }
+.tag-us { background: #EEEDFE; color: #3C3489; }
+.tag-law { background: #FCF0F0; color: #8B1A1A; }
+.tag-sv { background: #FDE8E9; color: #8C1319; }
+
+/* ── JOURNEY TIMELINE ── */
+.jt { margin: .75rem 0; }
+.jt-row { display: flex; gap: 10px; margin-bottom: .75rem; }
+.jt-dot-col { display: flex; flex-direction: column; align-items: center; }
+.jt-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.jt-line { width: 1px; flex: 1; background: var(--sv-border); margin-top: 3px; min-height: 12px; }
+.jt-stage { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+.jt-text { font-size: 13px; color: var(--sv-muted); line-height: 1.5; }
+
+/* ── QUOTE ── */
+.blockquote {
+  margin: 1rem 0; padding: 10px 14px;
+  border-left: 3px solid var(--sv-red);
+  background: var(--sv-off-white); border-radius: 0 8px 8px 0;
+}
+.blockquote p { font-size: 13px; color: var(--sv-muted); font-style: italic; line-height: 1.6; }
+.blockquote cite { font-size: 11px; color: var(--sv-muted); margin-top: 4px; display: block; font-style: normal; }
+
+/* ── LESSONS GRID ── */
+.lessons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: .75rem; }
+.lesson {
+  font-size: 12px; padding: 7px 10px;
+  background: var(--sv-off-white); border-radius: 8px;
+  color: var(--sv-muted); line-height: 1.4;
+  border: 1px solid var(--sv-border);
+}
+.source-note { font-size: 11px; color: var(--sv-muted); margin-top: 8px; font-style: italic; }
+
+/* ── INFO / WARN / SUCCESS BOXES ── */
+.info-box {
+  background: #EBF4FF; border: 1px solid #93C5FD;
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; color: #1E40AF; line-height: 1.5; margin-bottom: 1rem;
+}
+.warn-box {
+  background: #FFF7ED; border: 1px solid #FCD34D;
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; color: #92400E; line-height: 1.5; margin-bottom: .75rem;
+}
+.success-box {
+  background: var(--sv-green-light); border: 1px solid #6EE7B7;
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; color: #065F46; line-height: 1.5; margin-bottom: .75rem;
+}
+.orange-box {
+  background: var(--sv-red-light); border: 1px solid #F5B0B3;
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; color: var(--sv-red-dark); line-height: 1.5; margin-bottom: .75rem;
+}
+
+/* ── FILTER PILLS ── */
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 500;
+  cursor: pointer; border: 1px solid var(--sv-border);
+  background: var(--sv-white); color: var(--sv-muted); transition: all .15s;
+}
+.filter-btn:hover { background: var(--sv-off-white); }
+.filter-btn.active { background: var(--sv-red); border-color: var(--sv-red-dark); color: #fff; }
+
+/* ── REGION TABS ── */
+.region-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.rtab {
+  padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--sv-border);
+  background: var(--sv-white); color: var(--sv-muted); transition: all .15s;
+}
+.rtab:hover { background: var(--sv-off-white); }
+.rtab.active { background: var(--sv-navy); border-color: var(--sv-navy); color: #fff; }
+.rpanel { display: none; }
+.rpanel.active { display: block; }
+
+/* ── PATHWAY TABS WITHIN REGION ── */
+.pw-tabs { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 1rem;
+  padding-bottom: .75rem; border-bottom: 1px solid var(--sv-border); }
+.pwtab {
+  padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  cursor: pointer; border: 1px solid var(--sv-border);
+  background: var(--sv-white); color: var(--sv-muted); transition: all .15s;
+}
+.pwtab:hover { background: var(--sv-off-white); }
+.pwtab.active { background: var(--sv-red); border-color: var(--sv-red-dark); color: #fff; }
+.pwpanel { display: none; }
+.pwpanel.active { display: block; }
+
+/* ── ORG LIST ── */
+.org { display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--sv-border); }
+.org:last-child { border-bottom: none; }
+.org-info { flex: 1; }
+.org-name { font-size: 13px; font-weight: 600; color: var(--sv-navy); }
+.org-desc { font-size: 12px; color: var(--sv-muted); margin-top: 2px; line-height: 1.4; }
+.org-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.org-link {
+  flex-shrink: 0; font-size: 11px; padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--sv-border); color: var(--sv-red);
+  text-decoration: none; background: var(--sv-white);
+  transition: background .15s;
+}
+.org-link:hover { background: var(--sv-red-light); }
+
+/* ── SALARY BANDS ── */
+.salary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 1rem; }
+.sband { border-radius: 10px; padding: 10px 12px; text-align: center; }
+.sband.entry { background: #FDE8E9; border: 1px solid #F5B0B3; }
+.sband.mid { background: #E6F1FB; border: 1px solid #93C5FD; }
+.sband.senior { background: #EEEDFE; border: 1px solid #C4B5FD; }
+.sband-label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.sband.entry .sband-label { color: var(--sv-red-dark); }
+.sband.mid .sband-label { color: #1E40AF; }
+.sband.senior .sband-label { color: #5B21B6; }
+.sband-val { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; }
+.sband.entry .sband-val { color: var(--sv-red-dark); }
+.sband.mid .sband-val { color: #1E40AF; }
+.sband.senior .sband-val { color: #5B21B6; }
+.sband-note { font-size: 10px; color: var(--sv-muted); margin-top: 3px; }
+
+/* ── ROUTE ROWS ── */
+.route { display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--sv-border); }
+.route:last-child { border-bottom: none; }
+.rbadge {
+  flex-shrink: 0; font-size: 10px; padding: 2px 8px;
+  border-radius: 999px; font-weight: 700; margin-top: 2px;
+  white-space: nowrap;
+}
+.rb-iim { background: #FFF7ED; color: #92400E; }
+.rb-specialist { background: var(--sv-green-light); color: #065F46; }
+.rb-athlete { background: #FCEBEB; color: #991B1B; }
+.rb-law { background: #FDF2F8; color: #9D174D; }
+.rb-general { background: #EFF6FF; color: #1D4ED8; }
+.rb-online { background: #F5F3FF; color: #5B21B6; }
+.route-info { flex: 1; }
+.route-name { font-size: 13px; font-weight: 600; color: var(--sv-navy); }
+.route-desc { font-size: 12px; color: var(--sv-muted); margin-top: 2px; line-height: 1.4; }
+.route-inst { font-size: 11px; color: var(--sv-red); margin-top: 2px; font-weight: 500; }
+
+/* ── EMPLOYERS ── */
+.emp-grid { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: .75rem; }
+.emp {
+  font-size: 11px; padding: 3px 9px; border-radius: 999px;
+  background: var(--sv-off-white); border: 1px solid var(--sv-border);
+  color: var(--sv-muted);
+}
+
+/* ── LEADER CARDS ── */
+.leader { display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--sv-border); }
+.leader:last-child { border-bottom: none; }
+.leader-av {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content:center;
+  font-size: 13px; font-weight: 700;
+}
+.leader-name { font-size: 14px; font-weight: 600; color: var(--sv-navy); }
+.leader-role { font-size: 11px; color: var(--sv-muted); margin-top: 1px; }
+.leader-edu { font-size: 11px; color: var(--sv-red); margin-top: 3px; font-weight: 500; }
+.leader-path { font-size: 11px; color: var(--sv-muted); margin-top: 2px; font-style: italic; line-height: 1.4; }
+
+/* ── INSTITUTE TABLE ── */
+.inst-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 12px; }
+.inst-table th {
+  text-align: left; padding: 6px 8px;
+  background: var(--sv-off-white); font-size: 10px; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--sv-muted);
+  border-bottom: 2px solid var(--sv-border);
+}
+.inst-table td { padding: 8px 8px; border-bottom: 1px solid var(--sv-border); vertical-align: top; }
+.inst-table tr:hover td { background: var(--sv-off-white); }
+.tier { font-size: 10px; padding: 2px 7px; border-radius: 999px; font-weight: 700; }
+.t1 { background: #FFF7ED; color: #92400E; }
+.t2 { background: var(--sv-green-light); color: #065F46; }
+.t3 { background: #EFF6FF; color: #1D4ED8; }
+
+/* ── STORY STACK ── */
+.story-stack { display: flex; flex-direction: column; gap: .75rem; }
+.source-badge {
+  display: inline-flex; align-items: center; gap: 4px; font-size: 11px;
+  padding: 2px 9px; border-radius: 999px;
+  background: var(--sv-off-white); border: 1px solid var(--sv-border);
+  color: var(--sv-muted); margin-bottom: .75rem;
+}
+
+/* ── FORM ── */
+.form-section {
+  background: var(--sv-navy);
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+.form-section h2 {
+  font-size: 32px; font-weight: 900; color: var(--sv-white);
+  margin-bottom: .5rem;
+}
+.form-section h2 em { color: var(--sv-red); font-style: normal; }
+.form-section p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 2rem; }
+.form-card {
+  max-width: 560px; margin: 0 auto;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 2rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-row.full { grid-template-columns: 1fr; }
+.form-group { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+.form-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); }
+.form-input, .form-select, .form-textarea {
+  padding: 10px 14px; border-radius: 8px; font-size: 13px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  color: #fff; font-family: 'Barlow', sans-serif; transition: border-color .15s;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none; border-color: var(--sv-red);
+}
+.form-select { cursor: pointer; }
+.form-select option { background: var(--sv-slate); color: #fff; }
+.form-textarea { resize: vertical; min-height: 90px; }
+.form-submit {
+  width: 100%; padding: 13px; border-radius: 8px;
+  background: var(--sv-red); color: #fff; font-size: 15px; font-weight: 700;
+  cursor: pointer; border: none; margin-top: 8px;
+  transition: all .15s; font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.05em;
+}
+.form-submit:hover { background: var(--sv-red-dark); transform: translateY(-1px); }
+.form-success {
+  display: none; text-align: center; padding: 2rem;
+  color: var(--sv-green); font-size: 16px; font-weight: 600;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--sv-navy); color: rgba(255,255,255,0.55);
+  text-align: center; padding: 2rem;
+  font-size: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer strong { color: var(--sv-red); }
+footer a { color: rgba(255,255,255,0.55); text-decoration: underline; }
+
+/* ── MISC ── */
+.section-divider {
+  margin: 0 auto; max-width: 820px;
+  border: none; border-top: 1px solid var(--sv-border);
+}
+.new-badge {
+  display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 999px;
+  background: var(--sv-red); color: #fff; font-weight: 700; margin-left: 5px;
+  vertical-align: middle;
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--sv-red); margin-bottom: .6rem;
+}
+h4.sub-section { font-size: 13px; font-weight: 700; color: var(--sv-navy); margin-bottom: .5rem;
+  text-transform: uppercase; letter-spacing: .06em; font-size: 11px; color: var(--sv-muted); }
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .salary-grid { grid-template-columns: 1fr; }
+  .lessons-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">Sport<span>Path</span> <span style="font-size:13px;font-weight:400;color:rgba(255,255,255,0.55);margin-left:4px">by <span style="color:var(--sv-red);font-weight:800">SPORTZ</span> <span style="color:#4A84D8;font-weight:800">VILLAGE</span></span></div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('explore',this)">Explore Pathways</button>
+    <button class="nav-link" onclick="showPage('funding',this)">💰 Funding</button>
+    <button class="nav-link" onclick="showPage('toolkit',this)">🎯 Toolkit</button>
+    <button class="nav-link" onclick="showPage('stories',this)">Real Stories</button>
+    <button class="nav-link" onclick="showPage('industry',this)">Industry Builder</button>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth'})">Get Guidance →</button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-eyebrow">🏟️ <span style="color:var(--sv-red);font-weight:800">SPORTZ</span> <span style="color:#4A84D8;font-weight:800">VILLAGE</span> · SportPath India</div>
+  <h1>Your Sport.<br><em>Your Career. Mapped.</em></h1>
+  <p class="hero-sub">India has 600M+ people under 25. Most have a sport they love. Almost none know what to do with it. We fix that.</p>
+  <div class="hero-pills">
+    <span class="hero-pill red">🏏 Cricket</span>
+    <span class="hero-pill red">⚽ Football</span>
+    <span class="hero-pill red">🏃 Athletics</span>
+    <span class="hero-pill">🏅 Athlete pathway</span>
+    <span class="hero-pill">💼 Sports professional</span>
+    <span class="hero-pill">🚀 Industry builder</span>
+    <span class="hero-pill">🌍 7 global regions</span><span class="hero-pill">🇺🇸 USA / NCAA</span><span class="hero-pill">📚 Class 9-10 entry</span>
+  </div>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="showPage('explore',document.querySelectorAll('.nav-link')[0])">Explore Pathways →</button>
+    <button class="btn-secondary" onclick="showPage('stories',document.querySelectorAll('.nav-link')[1])">Read Real Stories</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">18,000+</div>
+      <div class="hero-stat-label">Partner schools</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">66L</div>
+      <div class="hero-stat-label">Children reached</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">7</div>
+      <div class="hero-stat-label">Global regions</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Pathways mapped</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE TABS ═══ -->
+<div class="page-tabs">
+  <button class="page-tab active" onclick="showPage('explore',this)" id="pt-explore">🌍 Explore Pathways</button>
+  <button class="page-tab" onclick="showPage('funding',this)" id="pt-funding">💰 Funding</button>
+  <button class="page-tab" onclick="showPage('toolkit',this)" id="pt-toolkit">🎯 Toolkit</button>
+  <button class="page-tab" onclick="showPage('stories',this)" id="pt-stories">🌟 Real Stories</button>
+  <button class="page-tab" onclick="showPage('industry',this)" id="pt-industry">🚀 Industry Builder</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 1: EXPLORE PATHWAYS
+     ═══════════════════════════════════════════════ -->
+<div class="page-panel active" id="pp-explore">
+<div class="section">
+  <div class="section-label">Your world, your rules</div>
+  <h2 class="section-title">Where do you want to go?</h2>
+  <p class="section-sub">Pick a region, pick your pathway. Real programmes, real scholarships, real entry routes — not generic advice copy-pasted from the internet.</p>
+
+  <!-- Region tabs -->
+  <div class="region-tabs">
+    <button class="rtab active" onclick="showRegion('india',this)">🇮🇳 India</button>
+    <button class="rtab" onclick="showRegion('usa',this)">🇺🇸 USA</button>
+    <button class="rtab" onclick="showRegion('uk',this)">🇬🇧 UK</button>
+    <button class="rtab" onclick="showRegion('australia',this)">🇦🇺 Australia</button>
+    <button class="rtab" onclick="showRegion('singapore',this)">🇸🇬 Singapore</button>
+    <button class="rtab" onclick="showRegion('dubai',this)">🇦🇪 Dubai</button>
+    <button class="rtab" onclick="showRegion('europe',this)">🇪🇺 Europe</button>
+  </div>
+
+  <!-- ─── INDIA ─── -->
+  <div class="rpanel active" id="rp-india">
+    <div class="orange-box">🏏 India is the launchpad. Build your foundation here — everything else flows from it. The system is better than you think.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('india','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('india','professional',this)">💼 Sports Professional</button>
+      <button class="pwtab" onclick="showPW('india','industry',this)">🚀 Industry Builder</button>
+    </div>
+
+    <div class="pwpanel active" id="pw-india-athlete">
+
+      <!-- ═══ Class 9-10 decision window ═══ -->
+      <div class="success-box" style="margin-bottom:1rem;border-left:4px solid var(--sv-red)">
+        <strong style="color:var(--sv-red);font-size:1.05rem">📚 Class 9-10: the decision window</strong><br>
+        <span style="color:var(--sv-navy);font-size:.92rem">Ages 14-16 is when sport-career paths lock in. Miss this window and your options shrink — every year after Class 10 costs something. Start here if you're in Class 8/9/10 right now.</span>
+      </div>
+      <h4 class="sub-section">If you're in Class 9-10: your next 3 moves</h4>
+      <div class="org"><div class="org-info"><div class="org-name">1. Register with the CBSE/ICSE Sports Board + district federation</div><div class="org-desc">CBSE accepts Physical Education as a main Class 11-12 subject since 2024. Register with your district sports office and the state association for your sport. District-level competition is the gateway — no district medal = no state selection = no scholarships. Don't skip this step.</div><div class="org-tags"><span class="tag tag-athlete">Free</span><span class="tag tag-sv">Mandatory</span></div></div><span class="org-link" style="color:var(--sv-muted)">Talk to your PE teacher →</span></div>
+      <div class="org"><div class="org-info"><div class="org-name">2. Apply to SAI National Sports Academies (age 12-16)</div><div class="org-desc">SAI's National Centre of Excellence (NCOE) and National Sports Academies take athletes aged 12-16 for cricket, football, athletics, boxing, wrestling, hockey, and more. Free residential training + schooling. The proper 'become an athlete' decision is made here. Competitive entry — district-level performance minimum.</div><div class="org-tags"><span class="tag tag-athlete">Free</span><span class="tag tag-sv">Residential</span></div></div><a class="org-link" href="https://sportsauthorityofindia.nic.in/" target="_blank">Visit SAI →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">3. Scout Class 11-12 'Sports + Academics' schools</div><div class="org-desc">A small group of Indian schools integrate elite sport and academics: Inspire Institute of Sport (Bellary, JSW), Rahul Dravid Athlete Mentorship school partners, Jindal Sports School (Vijaynagar), PadukoneNiketan (Bangalore, badminton), Mittal Champions Trust schools. Most are tuition-free for selected athletes and route directly to SAI/state academies + college scholarships abroad.</div><div class="org-tags"><span class="tag tag-athlete">Scholarships</span><span class="tag tag-sv">Integrated</span></div></div><a class="org-link" href="https://inspireinstituteofsport.com/" target="_blank">IIS example →</a></div>
+      <div class="warn-box" style="margin-bottom:1rem">⚠️ Class 9-10 decision: if you're medalling at state level + academically strong, the 'overseas college scholarship' route (USA/UK/Australia — see those tabs) is your highest-ceiling option. If you're district-level but not state, the 'Indian government pathway' (SAI → Khelo India → state job) is more realistic. Honest audits beat hopeful ones.</div>
+
+      <h4 class="sub-section">India athlete pathway — the real system</h4>
+      <div class="org"><div class="org-info"><div class="org-name">Sportz Village PathwayZ</div><div class="org-desc">School-based talent identification across 88 Sports Development Centres. Data-driven scouting, league play, and connections to state academies and professional clubs. The grassroots-to-elite pipeline.</div><div class="org-tags"><span class="tag tag-sv">Free</span><span class="tag tag-athlete">Grassroots → Elite</span></div></div><a class="org-link" href="https://pathwayz.sportzvillage.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">SAI Training Centres (STCs)</div><div class="org-desc">25+ residential centres across India. Free coaching, accommodation, nutrition, and kit for cricket, football, and athletics. The government's most direct athlete support system.</div><div class="org-tags"><span class="tag tag-athlete">Free</span><span class="tag tag-sv">Govt</span></div></div><a class="org-link" href="https://www.sportsauthorityofindia.nic.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Khelo India Youth Scheme</div><div class="org-desc">₹5 lakh per year for top-performing youth athletes. Funds infrastructure, academies, and inter-state competitions. Your first big government scholarship if you're performing at state level.</div><div class="org-tags"><span class="tag tag-athlete">₹5L/yr scholarship</span><span class="tag tag-sv">Govt</span></div></div><a class="org-link" href="https://kheloindia.gov.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Olympic Gold Quest (OGQ)</div><div class="org-desc">₹15–60 lakh/year for Olympic-pathway athletes. Coaching, sports science, nutrition, physiotherapy. Supported 13 of India's last 21 Olympic medalists — including PV Sindhu from age 14.</div><div class="org-tags"><span class="tag tag-ogq">Elite athletes only</span></div></div><a class="org-link" href="https://ogq.org/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">GoSports Foundation</div><div class="org-desc">₹1–15 lakh scholarships for national-level Olympic and Paralympic athletes. Coaching, legal support, sports science, and career guidance. Changed Rani Rampal's life. Could change yours.</div><div class="org-tags"><span class="tag tag-gosports">National-level athletes</span></div></div><a class="org-link" href="https://gosports.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Target Olympic Podium Scheme (TOPS)</div><div class="org-desc">Government's elite support programme. Monthly stipend, foreign training, custom equipment, and coaching grants for athletes with genuine Olympic/Paralympic medal potential.</div><div class="org-tags"><span class="tag tag-sv">Elite Govt</span></div></div><a class="org-link" href="https://sportsauthorityofindia.nic.in/sai_new/target-olympic-podium" target="_blank">Visit →</a></div>
+    </div>
+
+    <div class="pwpanel" id="pw-india-professional">
+      <h4 class="sub-section">Coaching, sports science, physiotherapy</h4>
+      <div class="org"><div class="org-info"><div class="org-name">LNIPE Gwalior — Sports Science degrees</div><div class="org-desc">India's premier physical education university. BSc, MSc, PhD in sports science, coaching, and physical education. Affordable fees, government-backed, strong coaching certification pathways.</div><div class="org-tags"><span class="tag tag-athlete">BSc / MSc / PhD</span></div></div><a class="org-link" href="https://www.lnipe.edu.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">SAI Coaching Certifications (NCC 1–3)</div><div class="org-desc">National coaching certificates for cricket, football, and athletics. Available through SAI centres nationwide. Subsidised fees. Gateway to coaching at SAI centres, state academies, and school sports.</div><div class="org-tags"><span class="tag tag-sv">Subsidised</span><span class="tag tag-sv">Govt</span></div></div><a class="org-link" href="https://www.sportsauthorityofindia.nic.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">AFC / AIFF Coaching Licences (Football)</div><div class="org-desc">AFC D/C/B Licence pathway. Required for professional football coaching roles in India. AIFF organises AFC D licence courses regularly across India. Starting salary: ₹3–8 LPA. Senior coaches: ₹15–30 LPA.</div><div class="org-tags"><span class="tag tag-athlete">Football</span></div></div><a class="org-link" href="https://www.the-aiff.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">GoSports Foundation — Athlete Career Support</div><div class="org-desc">Beyond scholarships, GoSports helps athletes transition into the sports industry — workshops on media, finance, career planning, and HR partnerships for post-sport jobs.</div><div class="org-tags"><span class="tag tag-gosports">Career transition</span></div></div><a class="org-link" href="https://gosports.in/programmes/" target="_blank">Visit →</a></div>
+    </div>
+
+    <div class="pwpanel" id="pw-india-industry">
+      <h4 class="sub-section">Management, analytics, law, media — the business of sport</h4>
+      <div class="org"><div class="org-info"><div class="org-name">IIM Mumbai + IISM — Joint PGPSM <span class="new-badge">2026</span></div><div class="org-desc">India's most significant new sports management programme. 1-year, co-taught by IIM Mumbai faculty and IISM industry experts. Applications: Nov 2025 – Jan 2026. Starts April 2026.</div><div class="org-tags"><span class="tag tag-industry">Tier 1</span><span class="tag tag-athlete">₹8–10L fees est.</span></div></div><a class="org-link" href="https://iimmumbai.ac.in/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">GISB Mumbai — PG Programme in Sports Management</div><div class="org-desc">15-month intensive. Certified by UMass Amherst McCormack (World #1 programme). Live projects with Chelsea FC, Premier League, Borussia Dortmund, JSW Sports. Best for global sports career ambitions.</div><div class="org-tags"><span class="tag tag-industry">Tier 1</span><span class="tag tag-intl">International</span></div></div><a class="org-link" href="https://www.gisbindia.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">IIM Rohtak — ePGDSM (16-month Executive Diploma)</div><div class="org-desc">India's only IIM-certified sports management diploma. For working professionals and career switchers. Alumni at Puma, Adidas, JSW Sports, Star Sports, IPL franchises.</div><div class="org-tags"><span class="tag tag-industry">Tier 1</span></div></div><a class="org-link" href="https://iimrohtak.ac.in/epgdsm-about.php" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">IISM Mumbai — BSM / MSM / PGPSM</div><div class="org-desc">Asia's largest sports management institute. Founded by ex-Indian cricketer Nilesh Kulkarni. 218 organisations recruited the 2024 batch. Highest: ₹12 LPA. Average: ₹3–5 LPA. 80% placement rate.</div><div class="org-tags"><span class="tag tag-industry">Tier 2</span></div></div><a class="org-link" href="https://iismworld.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">IISWBM Kolkata — PG Diploma in Sports Management</div><div class="org-desc">₹2.7L total fees. India's oldest B-school (1953). Strong Tata Steel / Jamshedpur FC links. Written test + GD + PI admission process. Good value for East India students.</div><div class="org-tags"><span class="tag tag-industry">Tier 2</span></div></div><a class="org-link" href="https://www.iiswbm.edu/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">LawNK — Sports Law (by Nandan Kamath)</div><div class="org-desc">India's first dedicated sports law firm. Internships available for law students. NLSIU, NALSAR, NUJS graduates → apply. Sports law is India's most elite and least crowded entry track.</div><div class="org-tags"><span class="tag tag-law">Law</span></div></div><a class="org-link" href="https://www.lawnk.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Sportsmatik — India Sports Jobs Portal</div><div class="org-desc">India's largest sports career portal. Lists internships and jobs in management, analytics, coaching, media, and events. Free to create a profile. Your first stop for breaking in.</div><div class="org-tags"><span class="tag tag-sv">Jobs</span><span class="tag tag-sv">Free</span></div></div><a class="org-link" href="https://sportsmatik.com/" target="_blank">Visit →</a></div>
+    </div>
+  </div>
+
+  <!-- ─── SINGAPORE ─── -->
+  <div class="rpanel" id="rp-singapore">
+    <div class="info-box">🇸🇬 Small country, enormous sports investment. Singapore's spex scholarship framework is one of the world's best-funded athlete support systems. 3.5 hours from India, huge Indian community, English-speaking. ⚠️ Most spex scholarships require Singapore citizenship or PR.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('singapore','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('singapore','industry',this)">🚀 Industry</button>
+    </div>
+    <div class="pwpanel active" id="pw-singapore-athlete">
+      <div class="org"><div class="org-info"><div class="org-name">Singapore Sports School (SSP)</div><div class="org-desc">The world's only school built specifically for elite student-athletes. Integrates IB, IGCSE, and Poly programmes with high-performance training. Open to international students. Admissions via Singapore MOE.</div><div class="org-tags"><span class="tag tag-athlete">School + sport</span></div></div><a class="org-link" href="https://www.sportsschool.edu.sg/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">SOF-Peter Lim Scholarship</div><div class="org-desc">S$1,000–S$5,000 cash scholarships for student-athletes under 18 across 55 sports. Since 2011, over 5,200 scholarships worth S$12.6M awarded. Annual application closes February.</div><div class="org-tags"><span class="tag tag-athlete">S$1k–5k</span><span class="tag tag-sv">Annual</span></div></div><a class="org-link" href="https://sof.sg/scholarship/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">spexEducation Undergraduate Scholarship <span class="new-badge">2025</span></div><div class="org-desc">Launched April 2025. Covers full university degree for active national athletes (Dual Career track) and retiring athletes (New Career track). Includes spex stipend + CPF top-ups.</div><div class="org-tags"><span class="tag tag-athlete">Govt 2025</span><span class="tag tag-sv">National athletes</span></div></div><a class="org-link" href="https://www.sportsingapore.gov.sg/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Infinite Sports Singapore (Sportz Village partner)</div><div class="org-desc">Sportz Village's Singapore and UAE academy network. Specialist coaching in football, cricket, gymnastics, and swimming across school venues. Grassroots pathway to elite regional competition.</div><div class="org-tags"><span class="tag tag-sv">Sportz Village</span></div></div><a class="org-link" href="https://infinitesportsuae.com/" target="_blank">Visit →</a></div>
+    </div>
+    <div class="pwpanel" id="pw-singapore-industry">
+      <div class="org"><div class="org-info"><div class="org-name">NTU — Physical Education & Sports Science</div><div class="org-desc">Singapore's strongest sports science programme. Feeds directly into Sport Singapore, national associations, and school sport careers. Athlete-friendly study environment under the spex framework.</div></div><a class="org-link" href="https://www.ntu.edu.sg/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">SMU + Singapore Sports School MOU (2025)</div><div class="org-desc">All carded student-athletes at SMU get exam flexibility, priority module selection, and dedicated athletic mentors. Business + sports passion = strong commercial sports career profile.</div></div><a class="org-link" href="https://news.smu.edu.sg/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Sport Singapore — Careers</div><div class="org-desc">Singapore's national sports agency. Hires for sports development, policy, coaching, facilities management, and events. The main employer for sports industry professionals in Singapore.</div><div class="org-tags"><span class="tag tag-industry">Govt careers</span></div></div><a class="org-link" href="https://www.sportsingapore.gov.sg/careers" target="_blank">Visit →</a></div>
+      <div class="info-box" style="margin-top:.75rem">💰 Singapore salaries: Entry S$2,500–4,000/mo (≈₹15–25 LPA) · Mid S$4,500–7,000/mo (≈₹28–44 LPA) · Senior S$8,000–15,000/mo (≈₹50–95 LPA). Work Pass (EP or S Pass) required post-graduation.</div>
+    </div>
+  </div>
+
+  <!-- ─── DUBAI ─── -->
+  <div class="rpanel" id="rp-dubai">
+    <div class="info-box">🇦🇪 Dubai = sports events hub + India-friendly city. Indian students make up 42% of Dubai's international student population. Best use: school-level talent development and sports industry career base (events, marketing, operations). UAE salaries are tax-free.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('dubai','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('dubai','industry',this)">🚀 Industry</button>
+    </div>
+    <div class="pwpanel active" id="pw-dubai-athlete">
+      <div class="org"><div class="org-info"><div class="org-name">Dubai Schools Games & Talent Identification Program</div><div class="org-desc">25,000+ students compete across 25 sports annually. Top performers earn "Talent Cards" tracking their progress. Exceptional performers may access national team selection, scholarships, or specialist training.</div><div class="org-tags"><span class="tag tag-sv">Dubai Govt</span><span class="tag tag-athlete">Free</span></div></div><a class="org-link" href="https://www.dubaisportscity.ae/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Talented Athlete Support Programme (TASP)</div><div class="org-desc">Multiple Dubai schools including Arcadia British and GEMS Wellington. Sport-specific coaching, S&C, video analysis, nutritional advice. Scholarships from Year 7 with up to 75% fee reduction.</div><div class="org-tags"><span class="tag tag-athlete">Year 7+ scholarships</span></div></div><a class="org-link" href="https://whichschooladvisor.com/uae/" target="_blank">Learn more →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Infinite Sports UAE — Football, Cricket, Athletics</div><div class="org-desc">Sportz Village's UAE academy partner. Specialist coaching across Dubai and Abu Dhabi school venues. Football, cricket, gymnastics, and swimming. Clear grassroots-to-elite pathway in the region.</div><div class="org-tags"><span class="tag tag-sv">Sportz Village</span></div></div><a class="org-link" href="https://infinitesportsuae.com/" target="_blank">Visit →</a></div>
+    </div>
+    <div class="pwpanel" id="pw-dubai-industry">
+      <div class="org"><div class="org-info"><div class="org-name">Ironwood Sports Management Global Academy, Dubai</div><div class="org-desc">BBA in Sports Management. Dubai-based, aligned with India's National Sports Policy 2025. Internship partners include Dubai Sports Council, UAE leagues, and fitness brands.</div><div class="org-tags"><span class="tag tag-industry">BBA degree</span></div></div><a class="org-link" href="https://ironwoodsports.com/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Dubai Sports Council — Industry Careers</div><div class="org-desc">Organises ILT20, DP World Tour, ATP Dubai, Dubai Marathon. Internships and entry roles in event management, marketing, and operations. The primary sports industry employer in the UAE.</div><div class="org-tags"><span class="tag tag-industry">Jobs</span></div></div><a class="org-link" href="https://www.dubaisportscouncil.ae/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">ILT20 — International League T20</div><div class="org-desc">6 franchises, active hiring for marketing, digital, ticketing, operations, and broadcast. Indian cricket knowledge is a genuine competitive advantage in UAE cricket roles.</div><div class="org-tags"><span class="tag tag-industry">Jobs</span><span class="tag tag-athlete">Cricket</span></div></div><a class="org-link" href="https://www.ilt20.com/" target="_blank">Visit →</a></div>
+      <div class="info-box" style="margin-top:.75rem">💰 UAE salaries (TAX-FREE): Entry AED 6–10K/mo (≈₹14–23 LPA) · Mid AED 12–20K/mo (≈₹28–46 LPA) · Senior AED 25–50K/mo (≈₹58–115 LPA).</div>
+    </div>
+  </div>
+
+  <!-- ─── UK ─── -->
+  <div class="rpanel" id="rp-uk">
+    <div class="success-box">🇬🇧 The UK has the most developed university sports scholarship system outside the USA. BUCS runs 55 sports across 140+ universities. Loughborough has topped the national standings for 44 consecutive years. There's even a scholarship specifically for Indian athletes here.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('uk','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('uk','industry',this)">🚀 Industry</button>
+    </div>
+    <div class="pwpanel active" id="pw-uk-athlete">
+      <div class="org"><div class="org-info"><div class="org-name">Loughborough University — Sports Scholarships</div><div class="org-desc">UK's #1 sports university (44 consecutive BUCS titles). International postgraduate bursary: £12,000 off tuition. <strong>Virendra Kumar Dhall Scholarship</strong>: up to £2,500/yr specifically for Indian athletes in non-cricket sports. Coaches identify scholars during admissions — no separate application.</div><div class="org-tags"><span class="tag tag-intl">India-specific</span><span class="tag tag-athlete">Scholarship</span></div></div><a class="org-link" href="https://www.lboro.ac.uk/sport/performance/performance-support/scholarships/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">University of Bath — Sports Scholarships</div><div class="org-desc">UK's first university to offer sports scholarships. 4 Paris 2024 Olympic medalists were Bath scholars. Bill Whiteley and Santander Sports Scholarships. Apply via Breakthrough Programme.</div><div class="org-tags"><span class="tag tag-athlete">Paris 2024 medalists</span></div></div><a class="org-link" href="https://www.teambath.com/athlete-zone/scholarships/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">ECB University Centres of Cricketing Excellence (UCCE)</div><div class="org-desc">6 ECB-funded cricket hubs at Cambridge, Durham, Oxford, Loughborough, Leeds/Bradford, Cardiff. Compete against county sides. 119 players secured county contracts since launch. Prime route for Indian cricketers wanting a UK degree + elite cricket.</div><div class="org-tags"><span class="tag tag-athlete">Cricket</span><span class="tag tag-intl">UK degree</span></div></div><a class="org-link" href="https://www.studentsportcompany.com/uk-university-sport/cricket/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Student Sport Company — Free matching service</div><div class="org-desc">Free service matching Indian athletes with UK universities offering cricket and football scholarships. No cost to students. Submit your profile, they do the legwork.</div><div class="org-tags"><span class="tag tag-sv">Free</span><span class="tag tag-athlete">Cricket + Football</span></div></div><a class="org-link" href="https://www.studentsportcompany.com/" target="_blank">Visit →</a></div>
+    </div>
+    <div class="pwpanel" id="pw-uk-industry">
+      <div class="org"><div class="org-info"><div class="org-name">Loughborough University — MSc Sport Management / Science</div><div class="org-desc">UK's #1 for sport. BSc Sport Science, MSc Sport Management, MSc Performance Analysis. Strong placement into UK sport federations, leagues, and agencies. International bursary available.</div><div class="org-tags"><span class="tag tag-industry">Postgrad</span></div></div><a class="org-link" href="https://www.lboro.ac.uk/sport/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Global Institute of Sport (GIS) — MSc International Sport Management</div><div class="org-desc">Top-ranked in SportBusiness Postgraduate Rankings 2025. Fully online — study from India or the UK. Alumni in Premier League, F1, and international federations. Best value UK-equivalent qualification.</div><div class="org-tags"><span class="tag tag-industry">Online MSc</span></div></div><a class="org-link" href="https://gis.sport/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">ECB / FA / UK Athletics — Graduate & Internship Programmes</div><div class="org-desc">England Cricket Board, Football Association, and UK Athletics all run structured graduate programmes. Indian students on Graduate Route visa (2 years post-study work rights) can apply without employer sponsorship.</div><div class="org-tags"><span class="tag tag-industry">Internships + grad</span></div></div><a class="org-link" href="https://www.ecb.co.uk/careers" target="_blank">Visit →</a></div>
+      <div class="info-box" style="margin-top:.75rem">💰 UK salaries: Entry £22–30K/yr (≈₹23–31 LPA) · Mid £35–60K/yr (≈₹36–62 LPA) · Senior £70–150K+/yr (≈₹72–155 LPA). 2-year Graduate Route visa post-graduation.</div>
+    </div>
+  </div>
+
+  <!-- ─── EUROPE ─── -->
+  <div class="rpanel" id="rp-europe">
+    <div class="info-box">🇪🇺 Europe's sports industry is more club-linked than university-linked. Football dominates. Germany's near-free tuition is the standout advantage — public universities charge ~€300–500/semester admin fee only. Most roles outside FIFA/UEFA/Sportradar require local language skills.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('europe','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('europe','industry',this)">🚀 Industry</button>
+    </div>
+    <div class="pwpanel active" id="pw-europe-athlete">
+      <div class="org"><div class="org-info"><div class="org-name">European University Sports Association (EUSA)</div><div class="org-desc">Governs university sport across 38 countries. European Universities Games every 2 years across 40+ sports. Indian students at European universities can represent their institution at EU level.</div><div class="org-tags"><span class="tag tag-athlete">EU competition</span></div></div><a class="org-link" href="https://www.eusa.eu/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">German Sports Aid Foundation (Deutsche Sporthilfe)</div><div class="org-desc">National aid scheme for elite athletes based in Germany. Covers training, competition, and sports science. Open to athletes at national/international level — relevant for Indian students training in Germany.</div><div class="org-tags"><span class="tag tag-athlete">Germany</span></div></div><a class="org-link" href="https://www.sporthilfe.de/en/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">European football club academies (Ajax, PSV, BVB, SC Freiburg)</div><div class="org-desc">Major European clubs run academies open to international triallists. Indian footballers with ISL academy or national-level experience can approach clubs for trials. Agent or direct contact required.</div><div class="org-tags"><span class="tag tag-athlete">Football</span><span class="tag tag-sv">Trial based</span></div></div><a class="org-link" href="https://www.the-aiff.com/" target="_blank">Contact AIFF →</a></div>
+    </div>
+    <div class="pwpanel" id="pw-europe-industry">
+      <div class="org"><div class="org-info"><div class="org-name">Germany — Near-free tuition at public universities</div><div class="org-desc">Sports management, sports science, and PE degrees at University of Hamburg, TU Munich, and others. ~€300–500/semester admin fee. English-taught programmes increasing. Post-study Chancenkarte (1-yr job search visa).</div><div class="org-tags"><span class="tag tag-sv">Near-free</span></div></div><a class="org-link" href="https://www.daad.de/en/" target="_blank">Visit DAAD →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">University of Groningen — Sports Science (Netherlands)</div><div class="org-desc">English-taught sports analytics and performance science. Netherlands has Orientation Year visa (1 year post-graduation job search). Strong sports science research. International fees ~€18,000/yr.</div><div class="org-tags"><span class="tag tag-intl">Netherlands</span></div></div><a class="org-link" href="https://www.rug.nl/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">UEFA / Sportradar / Deltatre — International roles</div><div class="org-desc">UEFA (Switzerland), Sportradar (global), and Deltatre (Italy/UK) are the largest European sports tech and federation employers. English-only roles available. Strong pathway for analytics and data graduates.</div><div class="org-tags"><span class="tag tag-industry">EU employers</span></div></div><a class="org-link" href="https://www.uefa.com/insideuefa/job-opportunities/" target="_blank">Visit →</a></div>
+      <div class="info-box" style="margin-top:.75rem">💰 Europe salaries: Entry €28–38K/yr (≈₹25–34 LPA) · Mid €45–65K/yr (≈₹40–58 LPA) · Senior €75–140K+/yr (≈₹67–125 LPA).</div>
+    </div>
+  </div>
+
+  <!-- ─── AUSTRALIA ─── -->
+  <div class="rpanel" id="rp-australia">
+    <div class="success-box">🇦🇺 Australia has one of the world's best athlete support systems (AIS). Cricket Australia's growing South Asia strategy means Indian cricket knowledge is a genuine differentiator. Post-study work visa of 2–4 years makes it the most career-friendly destination for Indian students.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('australia','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('australia','industry',this)">🚀 Industry</button>
+    </div>
+    <div class="pwpanel active" id="pw-australia-athlete">
+      <div class="org"><div class="org-info"><div class="org-name">AIS Athlete Education Scholarship</div><div class="org-desc">Up to A$5,000 for AIS-categorised athletes pursuing university education. Since 2020, A$473,000+ awarded to 160+ athletes across 22 sports. The most accessible government athlete scholarship in Australia.</div><div class="org-tags"><span class="tag tag-athlete">Up to A$5,000</span><span class="tag tag-sv">AIS athletes</span></div></div><a class="org-link" href="https://www.ais.gov.au/career-and-education/AES" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">AIS-University Partnerships (QUT, Griffith, Adelaide)</div><div class="org-desc">AIS partners with multiple Australian universities. QUT-AIS, AIS-Griffith, AIS-Adelaide Scholarship: A$5,000/yr for up to 3 years for elite athletes enrolled at these universities.</div><div class="org-tags"><span class="tag tag-athlete">A$5,000/yr × 3yrs</span></div></div><a class="org-link" href="https://www.ausport.gov.au/ais/career-and-education/elite-athlete-university-scholarships" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Cricket Australia — Sheffield Shield + South Asia pathway</div><div class="org-desc">Each Shield state allows one overseas player. Indian players with strong domestic records can trial for state club cricket. Cricket Australia runs a South Asia Scholarship for promising subcontinental players.</div><div class="org-tags"><span class="tag tag-athlete">Cricket</span></div></div><a class="org-link" href="https://www.cricket.com.au/pathways" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">UniSport Australia — University competition</div><div class="org-desc">Australian University Games across 35 sports. Indian students at Australian universities can compete in football, athletics, cricket, and other sports at national university level.</div><div class="org-tags"><span class="tag tag-sv">University sport</span></div></div><a class="org-link" href="https://www.unisport.com.au/" target="_blank">Visit →</a></div>
+    </div>
+    <div class="pwpanel" id="pw-australia-industry">
+      <div class="org"><div class="org-info"><div class="org-name">QUT — Sport Science & Business (Brisbane)</div><div class="org-desc">Strong sports science and sports business degrees. QUT-AIS scholarship for eligible athletes. Industry placements with Cricket Australia, Queensland Maroons, Brisbane Lions. Post-study work visa: 2–4 years.</div><div class="org-tags"><span class="tag tag-industry">University</span></div></div><a class="org-link" href="https://www.qut.edu.au/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">University of Sydney — Sport Science (Cricket Australia partnership)</div><div class="org-desc">Direct Cricket Australia partnership. Sports science programmes with access to elite training facilities. Sydney = Australia's sporting capital; direct access to CA, Football Australia, and sports agency roles.</div><div class="org-tags"><span class="tag tag-industry">University</span><span class="tag tag-athlete">Cricket</span></div></div><a class="org-link" href="https://www.sydney.edu.au/sport/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Sport Australia / AIS — Careers</div><div class="org-desc">Sport Australia (national sports agency) hires for policy, events, athlete welfare, and administration. AIS employs sports scientists, analysts, coaches, and physiotherapists. Strong entry point for qualified Indian professionals.</div><div class="org-tags"><span class="tag tag-industry">Govt careers</span></div></div><a class="org-link" href="https://www.sportaus.gov.au/careers" target="_blank">Visit →</a></div>
+      <div class="success-box" style="margin-top:.75rem">✅ Australia's Temporary Graduate visa (subclass 485) gives 2–4 years of post-study work rights. Most generous post-study entitlement of any country in this guide. Use it to build experience → convert to Skilled Worker visa sponsorship.</div>
+      <div class="info-box">💰 Australia salaries: Entry A$55–70K/yr (≈₹30–38 LPA) · Mid A$80–110K/yr (≈₹44–60 LPA) · Senior A$130–220K+/yr (≈₹71–120 LPA).</div>
+
+  <!-- ─── USA ─── -->
+  <div class="rpanel" id="rp-usa">
+    <div class="success-box">🇺🇸 USA = the world's biggest college sports scholarship market. NCAA alone awards ~US$3.7B in athletic aid/year across 500,000+ student-athletes. Division I = full-ride potential. But: the process is competitive, expensive, and slow. Start in Class 9-10, not Class 12. ⚠️ Cricket is NOT an NCAA sport — but tennis, golf, track, swim, squash, soccer, basketball, and field hockey all are.</div>
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showPW('usa','athlete',this)">🏅 Athlete</button>
+      <button class="pwtab" onclick="showPW('usa','industry',this)">🚀 Industry</button>
+    </div>
+
+    <div class="pwpanel active" id="pw-usa-athlete">
+      <h4 class="sub-section">NCAA basics — what Indian athletes actually need to know</h4>
+      <div class="info-box" style="margin-bottom:1rem"><strong>The 3 divisions:</strong><br><strong>Division I</strong> — 350 schools, highest competition, full athletic scholarships allowed (in most sports). Power 5 conferences (SEC, Big Ten, ACC, Big 12, Pac-12 successor). This is the dream most Indians chase.<br><strong>Division II</strong> — 300 schools, partial scholarships, more academic flex, better life-balance. Under-appreciated by Indian applicants.<br><strong>Division III</strong> — 440 schools, no athletic scholarships but often generous academic/need-based aid. NESCAC (Williams, Amherst, Middlebury) = elite academics + solid sport.<br><strong>NAIA + JUCO</strong> — alternatives if NCAA doesn't work. NAIA = 250 smaller schools, flexible eligibility. JUCO (2-year community colleges) = path to NCAA after 1-2 years.</div>
+
+      <div class="org"><div class="org-info"><div class="org-name">NCAA Eligibility Center (mandatory first step)</div><div class="org-desc">Every prospective international athlete MUST register. Academic transcripts (Class 9-12), test scores (SAT/ACT — now optional at most schools but take it anyway), amateurism certification. Register in Class 11 at latest. Fee: US$150 international. Without this: no DI/DII eligibility.</div><div class="org-tags"><span class="tag tag-athlete">US$150</span><span class="tag tag-sv">Mandatory</span></div></div><a class="org-link" href="https://web3.ncaa.org/ecwr3/" target="_blank">Register →</a></div>
+
+      <div class="org"><div class="org-info"><div class="org-name">FirstPoint USA — college placement agency</div><div class="org-desc">UK-headquartered but India-active. Builds athlete highlight reels, submits profiles to NCAA coaches, manages the recruitment cycle. Fees: US$2,500-5,000. Works best for golf, tennis, soccer, swim. Used by 100+ Indian athletes to-date. Not the only option — compare with NCSA before signing.</div><div class="org-tags"><span class="tag tag-industry">Agency</span><span class="tag tag-athlete">US$2.5-5K</span></div></div><a class="org-link" href="https://firstpointusa.com/" target="_blank">Visit →</a></div>
+
+      <div class="org"><div class="org-info"><div class="org-name">NCSA (Next College Student Athlete)</div><div class="org-desc">US-based. World's largest college recruiting network. Free profile creation; paid tiers for active coach outreach. Database of 35,000+ college coaches. Good for sports with thin Indian agent coverage (swim, track, volleyball).</div><div class="org-tags"><span class="tag tag-industry">Agency</span></div></div><a class="org-link" href="https://www.ncsasports.org/" target="_blank">Visit →</a></div>
+
+      <div class="org"><div class="org-info"><div class="org-name">Final Third (India) — UK/US college placement</div><div class="org-desc">India-based agency. Specialises in football + other sports placement to UK and US universities. Helps with NCAA Eligibility Center, highlight video, coach outreach, visa. India-specific documentation help (transcript attestation etc.).</div><div class="org-tags"><span class="tag tag-industry">India agency</span></div></div><a class="org-link" href="https://finalthird.in/" target="_blank">Visit →</a></div>
+
+      <div class="org"><div class="org-info"><div class="org-name">Ivy League — no athletic scholarships, but academic aid</div><div class="org-desc">Princeton, Harvard, Yale, Columbia, Brown, Cornell, Penn, Dartmouth offer ZERO athletic scholarships. BUT if your family income is below ~US$85K, they offer full need-based aid. Ivy coaches actively recruit Indian athletes who can clear admissions. Sports with Ivy interest: squash, golf, rowing, fencing, tennis, track.</div><div class="org-tags"><span class="tag tag-intl">Need-based aid</span><span class="tag tag-athlete">Ivy</span></div></div><a class="org-link" href="https://ivyleague.com/" target="_blank">Visit →</a></div>
+
+      <div class="org"><div class="org-info"><div class="org-name">Prep schools + post-graduate year (PG year)</div><div class="org-desc">If you're not quite ready for D1 after Class 12, a PG year at a US prep school (Phillips Exeter, Choate, Lawrenceville, IMG Academy, The Hill School) gives you one extra year of US competition + academics, then re-apply to stronger colleges. Costs: US$40-80K. IMG Academy offers partial scholarships for elite athletes.</div><div class="org-tags"><span class="tag tag-athlete">US$40-80K</span><span class="tag tag-intl">Bridge route</span></div></div><a class="org-link" href="https://www.imgacademy.com/" target="_blank">IMG example →</a></div>
+
+      <div class="info-box" style="margin-top:1rem"><strong>Reality check on scholarships:</strong><br>• "Full ride" (tuition + board + fees) is rare outside headcount sports: football, basketball (men + women), gymnastics, tennis, volleyball (women).<br>• Equivalency sports (track, swim, soccer, golf, baseball) split scholarships across teams — expect 25-75% of tuition, not 100%.<br>• D1 tennis (women): 8 scholarships / team. Very competitive, but India has historical pipeline.<br>• Golf: 4.5-6 scholarships / team. Very reachable for state-level Indian junior golfers.<br>• Track: 12.6 / team. Spread across distances + events. Indians score in distance running (5K/10K/marathon).</div>
+
+      <div class="warn-box" style="margin-top:1rem">⚠️ Visa note: F-1 student visa. OPT gives 12 months post-study work (36 months for STEM majors). If you play a pro sport after college, you switch to P-1 (athlete) visa — possible but requires you to be among the best in your sport.</div>
+    </div>
+
+    <div class="pwpanel" id="pw-usa-industry">
+      <h4 class="sub-section">Sports industry in the USA — what's possible for Indians</h4>
+      <div class="info-box">US sports industry = US$85B+ (pro leagues + college + media + brands). Graduate programmes are the realistic entry point for international students — F-1 visa + OPT = 12 months work after graduation (36 for STEM-designated programmes). Most top jobs need a US MBA or MS in sports management with strong internships.</div>
+      <div class="org"><div class="org-info"><div class="org-name">Columbia University — MS Sports Management</div><div class="org-desc">Columbia SPS. Evening + part-time format. New York location = direct access to MLB, NBA, NFL, NHL league offices. Fees ~US$80K total. Strong Indian alumni network.</div><div class="org-tags"><span class="tag tag-industry">MS · Top tier</span></div></div><a class="org-link" href="https://sps.columbia.edu/academics/masters/sports-management" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">USC Annenberg / Marshall — Sports Management</div><div class="org-desc">Los Angeles. Direct Hollywood + sports agency access (CAA, WME-IMG, Wasserman HQ). Strong placement into athlete representation. STEM-designated MS option with 36-month OPT.</div><div class="org-tags"><span class="tag tag-industry">MS · Top tier</span><span class="tag tag-intl">STEM OPT</span></div></div><a class="org-link" href="https://annenberg.usc.edu/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Ohio University — Sports Administration (MSA)</div><div class="org-desc">Oldest and largest US sports management programme. Strong placement into MLB, NFL, NBA front offices. Lower cost than coastal programmes (~US$40K total). Alumni network is exceptional.</div><div class="org-tags"><span class="tag tag-industry">MSA · Value</span></div></div><a class="org-link" href="https://www.ohio.edu/education/academics/recreation-sport-tourism" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">University of Michigan — MSM + Ross School of Business</div><div class="org-desc">Michigan is a top US athletics program + top MBA. Dual degree possible: MSM + MBA in 2 years. Heavy recruitment by Nike, Adidas, Under Armour, athletic departments, and sponsorship agencies.</div><div class="org-tags"><span class="tag tag-industry">MSM / MBA</span></div></div><a class="org-link" href="https://michiganross.umich.edu/" target="_blank">Visit →</a></div>
+      <div class="org"><div class="org-info"><div class="org-name">Wasserman / CAA Sports / Roc Nation Sports — athlete agencies</div><div class="org-desc">Top US sports agencies. Represent biggest athletes in the world. Indian entry route: US MBA / MSM → internship → full-time offer. Competitive — 2-3 Indians per year break in.</div><div class="org-tags"><span class="tag tag-industry">Agencies</span></div></div><a class="org-link" href="https://www.wassermanmusic.com/" target="_blank">Visit →</a></div>
+      <div class="info-box" style="margin-top:.75rem">💰 US sports-industry salaries: Entry US$45-65K/yr (≈₹38-54 LPA) · Mid US$85-130K/yr (≈₹71-108 LPA) · Senior US$180-350K+/yr (≈₹150-290 LPA).</div>
+      <div class="warn-box" style="margin-top:.75rem">⚠️ Visa reality: F-1 → OPT (12mo, 36mo STEM) → H-1B lottery. H-1B is harder post-2024. Plan for: strong internship → employer commitment → H-1B sponsorship. Not all employers sponsor — confirm before accepting an offer.</div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div><!-- /section -->
+</div><!-- /pp-explore -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 2: REAL STORIES
+     ═══════════════════════════════════════════════ -->
+<div class="page-panel" id="pp-stories">
+<div class="section">
+  <div class="section-label">Proof it works</div>
+  <h2 class="section-title">Real journeys. Real people.</h2>
+  <p class="section-sub">Every story here is verified across multiple independent sources. These aren't PR case studies — they're the actual routes Indian athletes and sports professionals took to get where they are.</p>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterStory('all',this)">All</button>
+    <button class="filter-btn" onclick="filterStory('athlete',this)">🏅 Athlete</button>
+    <button class="filter-btn" onclick="filterStory('professional',this)">💼 Professional</button>
+    <button class="filter-btn" onclick="filterStory('industry',this)">🚀 Industry</button>
+    <button class="filter-btn" onclick="filterStory('gosports',this)">GoSports</button>
+    <button class="filter-btn" onclick="filterStory('ogq',this)">OGQ</button>
+    <button class="filter-btn" onclick="filterStory('us',this)">🇺🇸 US scholarship</button>
+    <button class="filter-btn" onclick="filterStory('sv',this)">Sportz Village</button>
+  </div>
+
+  <div class="story-stack">
+
+    <!-- 1. Neeraj Chopra -->
+    <div class="card" data-tags="athlete athletics">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#FDE8E9;color:#8C1319">NC</div>
+        <div class="card-meta">
+          <div class="card-name">Neeraj Chopra</div>
+          <div class="card-tagline">Joined a gym to lose weight at 13 → SAI found him → Olympic gold (Tokyo & World Champion). India's greatest track and field story.</div>
+          <div class="card-tags"><span class="tag tag-athlete">Athlete</span><span class="tag tag-intl">Athletics</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 SAI pathway | Khandra village, Haryana</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">Age 13 — Panipat, Haryana</div><div class="jt-text">Overweight and teased by classmates, joins a local gym. Spots javelin throwers at Shivaji Stadium. Coach Jaiveer Choudhary notices his raw arm strength. Starts training with no proper equipment.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">SAI system → National junior record</div><div class="jt-text">Enters SAI training at Tau Devi Lal Sports Complex, Panchkula. Wins National Junior Athletics Championship gold in 2012 with 68.40m — a national junior record.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">2016 — World U20 Champion + Indian Army</div><div class="jt-text">Throws 86.48m to win gold at the IAAF World U20 Championships in Poland — India's first-ever world junior athletics title and a world record. Inducted into the Indian Army as Naib Subedar.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:#5B21B6"></div></div><div><div class="jt-stage" style="color:#5B21B6">2021 → 2025 — Olympic gold, World Champion, 90m+</div><div class="jt-text">Tokyo Olympic gold (87.58m). World Champion Budapest 2023. Breaks 90m barrier at Doha Diamond League 2025. Endorsements with Gillette and Tata AIA.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"After my Olympics win, coaches reported being flooded with requests from youngsters eager to learn javelin. Stores began selling replica javelins made of bamboo."</p><cite>— Neeraj Chopra</cite></div>
+        <div class="lessons-grid"><div class="lesson">🏋 SAI spotted him — compete in AFI events to get noticed</div><div class="lesson">📚 Completed his BA degree alongside elite training</div><div class="lesson">🪖 Indian Army Sports Institute = training + income + stability</div><div class="lesson">📱 Elite performance builds brand endorsement opportunities</div></div>
+        <p class="source-note">Sources: Wikipedia, Britannica, Olympics.com — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 2. Rani Rampal -->
+    <div class="card" data-tags="athlete gosports">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:var(--sv-green-light);color:#065F46">RR</div>
+        <div class="card-meta">
+          <div class="card-name">Rani Rampal</div>
+          <div class="card-tagline">Cart-puller's daughter from Shahabad → GoSports covered her kit and shoes → India hockey captain → Padma Shri.</div>
+          <div class="card-tags"><span class="tag tag-athlete">Athlete</span><span class="tag tag-gosports">GoSports Foundation</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 GoSports Foundation scholarship | Shahabad, Haryana</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#991B1B"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#991B1B">Born 1994 — Shahabad Markanda, Haryana</div><div class="jt-text">Father is a cart-puller, mother a domestic worker. At age 7, spots boys playing hockey near her home. Walks into the Shahabad Hockey Academy. Coach Baldev Singh initially rejects her — too slight. She returns every day until he relents.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">GoSports Foundation steps in — the turning point</div><div class="jt-text">Family cannot afford hockey kit, shoes, or the mandatory 500ml of milk at the academy. She mixes milk with water to meet the requirement. GoSports Foundation covers her kit, equipment, and training costs. Without this, she stops playing.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">2008 — International debut at age 14</div><div class="jt-text">Becomes the youngest player ever to represent India's women's hockey team. Scores 4 goals at the 2009 Champion's Challenge Tournament to win the event. Named top goal scorer and Young Player of the Tournament.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">2010–2021 — World Cup youngest player → Olympic captain → Padma Shri</div><div class="jt-text">Youngest player at the 2010 World Cup (age 15). Scores 7 goals, wins Best Young Player. Captains India to their first Olympic semi-final in history (Tokyo 2020). Buys her family their first home in 2017. Padma Shri 2020.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"I wanted an escape from my life — from the electricity shortages, from barely having two meals. Papa couldn't afford to buy me a stick. But once he saw my passion, he said: play until your heart's content."</p><cite>— Rani Rampal, Humans of Bombay</cite></div>
+        <div class="lessons-grid"><div class="lesson">💚 GoSports Foundation can be life-changing for talented athletes with no money</div><div class="lesson">🏑 Local academies (Shahabad HA) are real pipelines to the national team</div><div class="lesson">💪 Coach Baldev Singh rejected her at first — persistence matters</div><div class="lesson">🏆 A sports career can lift an entire family out of poverty</div></div>
+        <p class="source-note">Sources: Wikipedia, Grokipedia, FirstSportz, MSN/Humans of Bombay — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 3. Satwik-Chirag -->
+    <div class="card" data-tags="athlete gosports">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:var(--sv-green-light);color:#065F46">SC</div>
+        <div class="card-meta">
+          <div class="card-name">Satwiksairaj & Chirag Shetty</div>
+          <div class="card-tagline">GoSports stepped in 2–3 weeks before the Thomas Cup 2022. India won for the first time in 73 years.</div>
+          <div class="card-tags"><span class="tag tag-athlete">Athlete</span><span class="tag tag-gosports">GoSports Foundation</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 GoSports PACE Scholarship | Badminton doubles</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">GoSports PACE scholarship — early career</div><div class="jt-text">Both players receive GoSports Foundation PACE (Programme for Aspiring Champions in Excellence) scholarships as junior athletes. Beyond money: sports science, legal guidance on contracts, and media training — things government programmes don't cover.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">2022 — The intervention that changed history</div><div class="jt-text">Just 2–3 weeks before the Thomas Cup 2022 in Bangkok, their coaching contract with former World No.1 Mathias Boe falls through. GoSports steps in immediately, covering the coaching costs. Without this, their preparation collapses.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">India wins Thomas Cup for the first time in 73 years</div><div class="jt-text">Satwik and Chirag win their doubles rubbers. India defeats Indonesia 3–0 in the final. India's first Thomas Cup title since 1979. They go on to reach World No.1 in men's doubles in 2023.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"Initially, when we didn't have the contract with Mathias Boe, GoSports stepped in — it was just 2–3 weeks before the Thomas Cup 2022. Such backing helps athletes focus only on the game."</p><cite>— Chirag Shetty (The Print)</cite></div>
+        <div class="lessons-grid"><div class="lesson">💚 Private scholarships fill gaps government support leaves open</div><div class="lesson">⚡ Timing of support matters as much as the amount</div><div class="lesson">🤝 GoSports covers coaching, legal, science — not just cash</div><div class="lesson">🏆 Scholarship → World No.1 → Thomas Cup. The pipeline is real.</div></div>
+        <p class="source-note">Sources: The Print, MyKhel, Inlaks Foundation Blog — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 4. Aarush & Avaneesh — Final Third -->
+    <div class="card" data-tags="athlete us football">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#F5F3FF;color:#5B21B6">AK</div>
+        <div class="card-meta">
+          <div class="card-name">Aarush & Avaneesh Kamath</div>
+          <div class="card-tagline">Bengaluru football players → full scholarships at LSUE (NJCAA D1 top 10 soccer programme) in the USA, 2023.</div>
+          <div class="card-tags"><span class="tag tag-athlete">Athlete</span><span class="tag tag-us">US scholarship</span><span class="tag tag-ft">Final Third</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 Final Third advisory | Bengaluru → Louisiana, USA</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#5B21B6"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#5B21B6">Bengaluru clubs and academies → Europe and US exposure trips</div><div class="jt-text">Twin brothers train at Bengaluru clubs from a young age. Their father Rajendra Kamath — who lived in the USA for over a decade — guides them through international exposure trips to Europe and the US. This is the step most Indian families skip, and the step that makes US coaches notice.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">2023 — Full scholarships at LSUE (NJCAA D1 top 10)</div><div class="jt-text">Both brothers earn full football scholarships at Louisiana State University Eunice — a top-10 NJCAA D1 soccer programme. Competing in the US while pursuing their degrees. Their father then founds Final Third to help other Indian families do the same.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"This journey taught me valuable lessons on the process. Now I want to share these insights with parents who aim to send their talented kids to the USA on sports scholarships."</p><cite>— Rajendra Kamath, Founder, Final Third</cite></div>
+        <div class="lessons-grid"><div class="lesson">🇺🇸 NJCAA D1 is a real, achievable target for strong Indian football players</div><div class="lesson">✈️ International exposure trips are the most effective recruitment tool</div><div class="lesson">📹 A good highlight video + coach emails = how scholarships happen</div><div class="lesson">👨‍👦 Parental understanding of the US system is as important as athletic talent</div></div>
+        <p class="source-note">Source: finalthird.in — verified on the organisation's own website.</p>
+      </div>
+    </div>
+
+    <!-- 5. Viren Rasquinha -->
+    <div class="card" data-tags="professional industry ogq">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#FCEBEB;color:#991B1B">VR</div>
+        <div class="card-meta">
+          <div class="card-name">Viren Rasquinha</div>
+          <div class="card-tagline">India hockey captain (Athens 2004) → ISB MBA → almost took a corporate job → CEO of Olympic Gold Quest. Now helps India win Olympic medals.</div>
+          <div class="card-tags"><span class="tag tag-professional">Sports professional</span><span class="tag tag-industry">Industry</span><span class="tag tag-ogq">OGQ</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 Athlete → sports industry | OGQ, India</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#991B1B"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#991B1B">School — St. Stanislaus, Bandra, Mumbai + India hockey</div><div class="jt-text">School topper and outstanding hockey player. Wins 2001 Junior Hockey World Cup in Hobart. Captains India in 180+ international matches including Athens 2004 Olympics. Arjuna Award 2005.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">2008 — Retires. MBA at ISB Hyderabad. Corporate job offer in hand.</div><div class="jt-text">At 28, quits hockey and earns a place at ISB Hyderabad. Gets a corporate job through campus placements. Is literally about to start the job when Geet Sethi and Prakash Padukone call him about OGQ's mission.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">2009 → Now — CEO of OGQ. 13 of India's last 21 Olympic medalists.</div><div class="jt-text">Follows his heart into OGQ. Now CEO, supporting 130+ Olympic and Paralympic athletes. OGQ has backed 13 of India's 21 Olympic medalists across the last four Olympics — including PV Sindhu from age 14. Named ET's Top 40 Under 40 leader in India.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"The one disappointment I had was not winning an Olympic medal as a player. OGQ gave me a very credible platform to pursue that dream through the eyes of the next generation of athletes."</p><cite>— Viren Rasquinha, Olympics.com</cite></div>
+        <div class="lessons-grid"><div class="lesson">🎓 ISB MBA + athlete background = most powerful sports executive combination in India</div><div class="lesson">🏒 A playing career is a launchpad, not an endpoint</div><div class="lesson">💡 The sports industry career can be as high-impact as the playing career</div><div class="lesson">🌟 OGQ is a funded, structured pathway for elite Indian Olympic athletes</div></div>
+        <p class="source-note">Sources: Wikipedia, Olympics.com, Sportskeeda, PlayToPotential — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 6. Nandan Kamath -->
+    <div class="card" data-tags="industry professional law">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#FDF2F8;color:#9D174D">NK</div>
+        <div class="card-meta">
+          <div class="card-name">Nandan Kamath</div>
+          <div class="card-tagline">Karnataka junior cricket captain → gave up cricket for law (by accident) → Rhodes Scholar Oxford + Harvard → founded India's first sports law firm + co-founded GoSports → drafted India's TOPS scheme.</div>
+          <div class="card-tags"><span class="tag tag-industry">Industry</span><span class="tag tag-law">Sports Law</span><span class="tag tag-gosports">GoSports</span><span class="tag tag-intl">Oxford · Harvard</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 Sports law + GoSports Foundation | Bengaluru</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#9D174D"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#9D174D">Teenage years — Karnataka junior cricket captain, India U-16</div><div class="jt-text">Sportsman first, student second. Captains the Karnataka state junior cricket team and represents India at the under-16 level. Chooses his pre-university college based entirely on the strength of its cricket team. Dreams of a professional cricket career.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">NLSIU Bengaluru — law student by chance</div><div class="jt-text">Hears about NLSIU from a classmate. Tries the entrance exam "for the experience" — interested in word games and logic puzzles. Gets in. His college cricket team had previously beaten the NLSIU team. Graduates 2000.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#5B21B6"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#5B21B6">Rhodes Scholarship → Oxford → Harvard → Davis Polk California</div><div class="jt-text">Wins the Rhodes Scholarship to Balliol College, Oxford. BCL + MSc Economic & Social History. Then Harvard Law School LLM. Then Davis Polk & Wardwell — one of the world's leading law firms — in California, Hong Kong, and India (2003–2006).</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">2007 — Returns to Bengaluru. Founded LawNK.</div><div class="jt-text">Returns with a conviction: "I felt I'll always be at my creative and open best in Bangalore." Founds LawNK — India's first dedicated sports law firm — at a time when, as he says, "there was almost no activity or opportunity for lawyers in Indian sport."</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">2008 → Now — GoSports co-founder + ICC + TOPS architect</div><div class="jt-text">Co-founds GoSports Foundation (₹10L from personal savings). LawNK becomes ICC's official law firm for the 2011 Cricket World Cup. Helps draft India's Target Olympic Podium Scheme (TOPS) — the programme widely credited for India's best-ever Olympic performances at Tokyo and Paris.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"I was a law student by chance, rather than by design. In my teenage years, I was a sportsman first, and a student next."</p><cite>— Nandan Kamath, SuperLawyer interview</cite></div>
+        <div class="lessons-grid"><div class="lesson">🏏 He played cricket at state and national U-16 — sport shaped his entire worldview</div><div class="lesson">⚖️ Sports law barely existed in India in 2007 — he built the field from scratch</div><div class="lesson">🎓 Elite credentials (NLSIU→Oxford→Harvard) opened doors; passion directed them</div><div class="lesson">🏆 He co-drafted TOPS — Neeraj Chopra's gold was partly shaped by Nandan's policy work</div></div>
+        <p class="source-note">Sources: LawInSport, NLSIU faculty page, SuperLawyer, LegallyIndia — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 7. Saumil Majmudar -->
+    <div class="card" data-tags="industry sv">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:var(--sv-red-light);color:var(--sv-red-dark)">SM</div>
+        <div class="card-meta">
+          <div class="card-name">Saumil Majmudar</div>
+          <div class="card-tagline">IIT Bombay + IIM Bangalore sportsman → Wipro → "Why aren't kids playing?" → founded India's largest school sports organisation.</div>
+          <div class="card-tags"><span class="tag tag-industry">Industry</span><span class="tag tag-sv">Sportz Village</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 Sports entrepreneurship | Bengaluru, India</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">IIT Bombay — Maharashtra Badminton + IIT Football</div><div class="jt-text">Represents Maharashtra in Badminton while at IIT Bombay. Also Sports Secretary and Inter-IIT Football team member. BTech in Metallurgical Engineering. Sport is a passion alongside a demanding degree.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">IIM Bangalore PGDM → Wipro International Marketing</div><div class="jt-text">After IIM Bangalore, joins Wipro's global R&D as an international marketing executive. Three years in corporate life. "If you are well educated, you create a safety net for yourself. So, why not use it to make a bigger leap?"</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">2003 — Founded Sportz Village. Multiple pivots. First investor Seedfund (₹7.5 Cr) when they had 10 schools.</div><div class="jt-text">Starts Sportz Village after a friend's remark about his 6-year-old son watching TV instead of playing. Launches EduSports in 2009 after multiple failed models. Featured on Aamir Khan's Satyamev Jayate as a scalable model for India.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">Today — 18,000+ schools. 66 lakh children. UAE expansion.</div><div class="jt-text">India's largest school sports organisation. 22 states. Expanding to Saudi Arabia. Advisory to NSDC, CII, Niti Aayog. PathwayZ36 programme now targeting 2036 Olympic athletes from school level.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"If you are well educated, you create a safety net for yourself. So, why not use it to make a bigger leap?"</p><cite>— Saumil Majmudar, Co-founder & CEO, Sportz Village</cite></div>
+        <div class="lessons-grid"><div class="lesson">🎓 Strong academics + sport = platform to build a sports company</div><div class="lesson">💡 You don't need to play professionally to build India's biggest sports org</div><div class="lesson">🏫 Schools are the most scalable sports access point in India</div><div class="lesson">📈 Sports entrepreneurship in India is still early-stage — opportunity is enormous</div></div>
+        <p class="source-note">Sources: YourStory, IIT Bombay ACR, Sportskeeda, ANI News — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 8. PV Sindhu -->
+    <div class="card" data-tags="athlete ogq">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#FCEBEB;color:#991B1B">PS</div>
+        <div class="card-meta">
+          <div class="card-name">PV Sindhu</div>
+          <div class="card-tagline">Hyderabad shuttler supported by OGQ from age 14 → 2 Olympic medals (Rio silver, Tokyo bronze) → 2019 World Champion.</div>
+          <div class="card-tags"><span class="tag tag-athlete">Athlete</span><span class="tag tag-ogq">OGQ</span><span class="tag tag-intl">International</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 OGQ support from age 14 | Hyderabad → Rio, Tokyo</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#991B1B"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#991B1B">Born 1995 — joins Gopichand Academy at age 8</div><div class="jt-text">Daughter of former Indian volleyball internationals. Inspired by Gopichand's 2001 All England win, starts badminton at age 8 and joins Gopichand's academy — the same academy that produced Saina Nehwal.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">OGQ identifies her at age 14</div><div class="jt-text">Olympic Gold Quest identifies Sindhu as Olympic medal potential at 14. OGQ covers training costs, international competition, coaching, sports science, nutrition, and physio — the complete athlete support system government alone doesn't provide.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">2016 → 2019 → 2021 — Silver, World Champion, Bronze. 7 years of OGQ investment.</div><div class="jt-text">Olympic silver Rio 2016. 2019 BWF World Champion — India's first. Olympic bronze Tokyo 2020. OGQ's 7-year commitment from age 14 produced two Olympic medals and a world title.</div></div></div>
+        </div>
+        <div class="blockquote"><p>"Sindhu is someone we have been supporting in her training since she was 14 years old."</p><cite>— Viren Rasquinha, CEO, Olympic Gold Quest</cite></div>
+        <div class="lessons-grid"><div class="lesson">🏸 OGQ identifies early — apply if you have national results</div><div class="lesson">⏳ Their investment started 7 years before her first Olympic medal</div><div class="lesson">🏫 Gopichand's academy + OGQ funding = the winning formula</div><div class="lesson">🏅 Private foundations bridge the gap to Olympic success that governments miss</div></div>
+        <p class="source-note">Sources: Wikipedia, Olympics.com, Viren Rasquinha interview — independently verified.</p>
+      </div>
+    </div>
+
+    <!-- 9. Rajendra Kamath / Final Third -->
+    <div class="card" data-tags="industry us football">
+      <div class="card-head" onclick="togCard(this)">
+        <div class="card-avatar" style="background:#EFF6FF;color:#1E40AF">RK</div>
+        <div class="card-meta">
+          <div class="card-name">Rajendra Kamath</div>
+          <div class="card-tagline">Bengaluru father who cracked the US football scholarship system for both his sons → founded Final Third to help every Indian family do the same.</div>
+          <div class="card-tags"><span class="tag tag-industry">Industry builder</span><span class="tag tag-ft">Final Third</span><span class="tag tag-us">US scholarship</span></div>
+        </div><span class="chev">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="source-badge">📍 Final Third | Bengaluru → USA</div>
+        <div class="jt">
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:#1E40AF"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:#1E40AF">Mumbai → USA (10+ years) → Bengaluru</div><div class="jt-text">Grows up in Anushaktinagar, Mumbai — same neighbourhood as Suryakumar Yadav. Lives in the USA for over a decade. Returns to Bengaluru and instils a love of football in his twin sons from a young age.</div></div></div>
+          <div class="jt-row"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-green)"></div><div class="jt-line"></div></div><div><div class="jt-stage" style="color:var(--sv-green)">Guides Aarush and Avaneesh through the US system himself</div><div class="jt-text">Navigates the entire US college football recruitment process — club football in India, international exposure trips to Europe and the US, coach outreach, NCAA registration, and financial aid negotiations. Blends 10 years of American experience with an Indian parent's priorities.</div></div></div>
+          <div class="jt-row" style="margin-bottom:0"><div class="jt-dot-col"><div class="jt-dot" style="background:var(--sv-red)"></div></div><div><div class="jt-stage" style="color:var(--sv-red)">2023 → Founded Final Third to share the knowledge</div><div class="jt-text">Both sons earn full scholarships at LSUE (NJCAA D1 top-10). Father founds Final Third in Bengaluru. Structured packages from Grade 8 through Grade 12 covering NCAA registration, coach outreach, ID camps, visa, and arrival support. WhatsApp: +91-9606703255</div></div></div>
+        </div>
+        <div class="blockquote"><p>"This journey taught me valuable lessons on the process. Now I want to share these insights with parents who aim to send their talented kids to the USA on sports scholarships."</p><cite>— Rajendra Kamath, Founder, Final Third (finalthird.in)</cite></div>
+        <div class="lessons-grid"><div class="lesson">🎯 NJCAA D1 is often a better entry point than NCAA D2 for Indian players</div><div class="lesson">✈️ International exposure trips are the recruitment differentiator</div><div class="lesson">📹 Highlight video + coach emails = how scholarships happen</div><div class="lesson">🚀 Solving a personal problem well can become a business</div></div>
+        <p class="source-note">Source: finalthird.in — verified on the organisation's own website.</p>
+      </div>
+    </div>
+
+  </div><!-- /story-stack -->
+</div><!-- /section -->
+</div><!-- /pp-stories -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 3: SPORTS INDUSTRY BUILDER
+     ═══════════════════════════════════════════════ -->
+<div class="page-panel" id="pp-industry">
+<div class="section">
+  <div class="section-label">Follow the money. Follow the passion.</div>
+  <h2 class="section-title">Sports Industry Builder</h2>
+  <p class="section-sub">The business of sport is a ₹15,000 Cr industry growing at 15% a year. It needs analysts, lawyers, operators, marketers, scientists — not just players. Here's who's hiring, what they pay, and how to get in. By region.</p>
+
+  <div class="region-tabs">
+    <button class="rtab active" onclick="showIndustryRegion('india',this)">🇮🇳 India</button>
+    <button class="rtab" onclick="showIndustryRegion('usa',this)">🇺🇸 USA</button>
+    <button class="rtab" onclick="showIndustryRegion('uk',this)">🇬🇧 UK</button>
+    <button class="rtab" onclick="showIndustryRegion('australia',this)">🇦🇺 Australia</button>
+    <button class="rtab" onclick="showIndustryRegion('singapore',this)">🇸🇬 Singapore</button>
+    <button class="rtab" onclick="showIndustryRegion('dubai',this)">🇦🇪 Dubai</button>
+    <button class="rtab" onclick="showIndustryRegion('europe',this)">🇪🇺 Europe</button>
+  </div>
+
+  <!-- ─── INDIA INDUSTRY ─── -->
+  <div class="rpanel active" id="irp-india">
+    <div class="pw-tabs">
+      <button class="pwtab active" onclick="showIPW('india','overview',this)">Overview</button>
+      <button class="pwtab" onclick="showIPW('india','institutes',this)">Institutes</button>
+      <button class="pwtab" onclick="showIPW('india','salaries',this)">Salaries</button>
+      <button class="pwtab" onclick="showIPW('india','leaders',this)">Who leads the industry</button>
+      <button class="pwtab" onclick="showIPW('india','tracks',this)">Career tracks</button>
+    </div>
+
+    <div class="pwpanel active" id="ipw-india-overview">
+      <div class="success-box">India's sports industry is worth ₹15,000+ Cr, growing 15% annually. The IPL ecosystem alone generates $12B+. 10 IPL franchises + 13 ISL clubs + Pro Kabaddi + PKL + dozens of emerging leagues = hundreds of management jobs created every year. The talent supply is still thin — which is your advantage.</div>
+      <div class="section-label" style="margin-bottom:.5rem">3 routes in</div>
+      <div class="route"><span class="rbadge rb-iim">IIM / ISB</span><div class="route-info"><div class="route-name">MBA from a premier business school</div><div class="route-desc">No sports specialisation needed — a top MBA opens franchise, agency, and sports brand doors at mid-to-senior level. Viren Rasquinha (OGQ CEO) took this path. Target salary: ₹15–30 LPA starting.</div></div></div>
+      <div class="route"><span class="rbadge rb-specialist">Specialist sports degree</span><div class="route-info"><div class="route-name">Dedicated sports management institute</div><div class="route-desc">IISM, GISB, IIM Rohtak ePGDSM, IIM Mumbai+IISM PGPSM. Deep industry networks, live projects with IPL/ISL/PKL, and direct placement into operations, marketing, and media roles.</div></div></div>
+      <div class="route"><span class="rbadge rb-athlete">Athlete → Industry</span><div class="route-info"><div class="route-name">Former athlete transitioning to sports business</div><div class="route-desc">Mustafa Ghouse (JSW Sports CEO), Nilesh Kulkarni (IISM founder), Rahul Dravid (BCCI Coach → GoSports Advisor). Elite credentials open senior roles — an MBA (ISB, IIM) dramatically accelerates the trajectory.</div></div></div>
+      <div class="route"><span class="rbadge rb-law">Law / Policy</span><div class="route-info"><div class="route-name">Sports law — India's most elite and least crowded entry</div><div class="route-desc">Nandan Kamath's path: NLSIU → Oxford → Harvard → Davis Polk → LawNK. Sports law in India is nascent but growing fast. NLSIU, NALSAR, NUJS + sports law interest = rare, highly valued profile.</div></div></div>
+      <div class="section-label" style="margin-bottom:.5rem;margin-top:1rem">Who's hiring</div>
+      <div class="emp-grid"><span class="emp">BCCI</span><span class="emp">IPL franchises (10)</span><span class="emp">ISL clubs (13)</span><span class="emp">Pro Kabaddi teams</span><span class="emp">Star Sports</span><span class="emp">Disney+Hotstar</span><span class="emp">Sony Sports Network</span><span class="emp">Viacom18</span><span class="emp">Dream Sports (Dream11)</span><span class="emp">JSW Sports</span><span class="emp">IMG Reliance (Rise Worldwide)</span><span class="emp">Baseline Ventures</span><span class="emp">ITW Consulting</span><span class="emp">Sportz Interactive</span><span class="emp">GoSports Foundation</span><span class="emp">OGQ</span><span class="emp">SAI (Govt)</span><span class="emp">Decathlon India</span><span class="emp">Adidas / Nike / Puma India</span><span class="emp">Cricbuzz / ESPNcricinfo</span><span class="emp">Cult.fit</span><span class="emp">NODWIN Gaming</span></div>
+    </div>
+
+    <div class="pwpanel" id="ipw-india-institutes">
+      <div class="info-box">All placement data from official institute reports (2024–2025). Fees = total programme cost. The IIM Mumbai + IISM joint programme is the single most significant development in Indian sports management education.</div>
+      <table class="inst-table">
+        <thead><tr><th>Institute</th><th>Course</th><th>Duration</th><th>Fees</th><th>Avg CTC</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td><strong>IIM Mumbai + IISM</strong><br><small style="color:var(--sv-red)">Joint PGPSM — launches 2026</small></td><td>PGPSM</td><td>1 yr</td><td>₹8–10L est.</td><td>₹15–25 LPA est.</td><td><span class="tier t1">Tier 1</span></td></tr>
+          <tr><td><strong>ISB Hyderabad</strong><br><small>MBA with sports electives</small></td><td>1-yr MBA</td><td>1 yr</td><td>~₹45L</td><td>₹32 LPA avg</td><td><span class="tier t1">Tier 1</span></td></tr>
+          <tr><td><strong>IIM Rohtak</strong><br><small>First IIM sports diploma</small></td><td>ePGDSM</td><td>16 months</td><td>~₹3.5L</td><td>₹8–12 LPA est.</td><td><span class="tier t1">Tier 1</span></td></tr>
+          <tr><td><strong>GISB Mumbai</strong><br><small>UMass Amherst certified (World #1)</small></td><td>PG Programme</td><td>15 months</td><td>~₹8–10L</td><td>₹6–10 LPA est.</td><td><span class="tier t1">Tier 1</span></td></tr>
+          <tr><td><strong>IISM Mumbai</strong><br><small>Asia's largest sports institute</small></td><td>BSM / MSM / PGPSM</td><td>1–3 yrs</td><td>₹3–5L</td><td>₹3–5 LPA (highest ₹12L)</td><td><span class="tier t2">Tier 2</span></td></tr>
+          <tr><td><strong>ISST Pune</strong><br><small>CII Sports Business Award 2025</small></td><td>PG Sports Mgmt</td><td>1 yr</td><td>~₹2–3L</td><td>₹4–8 LPA est.</td><td><span class="tier t2">Tier 2</span></td></tr>
+          <tr><td><strong>IISWBM Kolkata</strong><br><small>Tata Steel / Jamshedpur FC links</small></td><td>PG Diploma Sports</td><td>1 yr</td><td>₹2.7L</td><td>₹4–8 LPA est.</td><td><span class="tier t2">Tier 2</span></td></tr>
+          <tr><td><strong>LNIPE Gwalior</strong><br><small>Coaching / sports science</small></td><td>BSc / MSc / PhD</td><td>2–5 yrs</td><td>₹1–2L</td><td>₹3–6 LPA</td><td><span class="tier t3">Tier 3</span></td></tr>
+        </tbody>
+      </table>
+      <div class="warn-box">⚠️ Reality check: IISM average is ₹3–5 LPA. The biggest salary jump comes from specialisation (analytics, law, sponsorship) or switching from a specialist institute to an IIM/ISB after 2–3 years of work experience.</div>
+    </div>
+
+    <div class="pwpanel" id="ipw-india-salaries">
+      <div class="salary-grid">
+        <div class="sband entry"><div class="sband-label">Entry (0–2 yrs)</div><div class="sband-val">₹3–6 LPA</div><div class="sband-note">Ops, junior marketing, grassroots</div></div>
+        <div class="sband mid"><div class="sband-label">Mid (3–7 yrs)</div><div class="sband-val">₹8–18 LPA</div><div class="sband-note">Specialist roles, league & franchise</div></div>
+        <div class="sband senior"><div class="sband-label">Senior (8+ yrs)</div><div class="sband-val">₹30–70 LPA+</div><div class="sband-note">CEO, Sr VP, agency partner</div></div>
+      </div>
+      <div class="section-label" style="margin-bottom:.5rem">Role-by-role (2025 data)</div>
+      <div class="route"><span class="rbadge rb-general">Operations</span><div class="route-info"><div class="route-name">IPL Junior Logistics / Hospitality Coordinator</div><div class="route-desc">₹4–6 LPA. Seasonal contracts during IPL (Mar–May), often converting to full-year roles after 1–2 seasons of outstanding performance.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Operations</span><div class="route-info"><div class="route-name">IPL / ISL Team Manager</div><div class="route-desc">₹12–18 LPA. High-trust role managing player logistics, travel, media schedules. Needs 3–5 yrs experience. The "Ops Head" track is the biggest hiring track for IISM and ISST graduates.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Analytics</span><div class="route-info"><div class="route-name">Performance / Sports Analyst</div><div class="route-desc">₹5–12 LPA entry to mid. Fastest-growing base pay in the industry. PKL and ISL franchises investing heavily. Tools: Python + R + Tableau + domain knowledge. Analytics → ₹20–30 LPA senior.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Marketing</span><div class="route-info"><div class="route-name">Sponsorship / Partnership Executive</div><div class="route-desc">₹4–8 LPA base entry. Highest ceiling in the industry — senior sponsorship roles can exceed ₹20–30 LPA with commission. Revenue-generating roles always command a premium in any sports org.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Media</span><div class="route-info"><div class="route-name">Social Media Head (franchise)</div><div class="route-desc">₹10–15 LPA. 700M+ digital sports fans in India. Franchise digital leads are among the best-paid mid-level roles. Star Sports / Viacom18 media executives at senior level: ₹15–25 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Govt/SAI</span><div class="route-info"><div class="route-name">SAI High Performance Manager</div><div class="route-desc">₹12–24 LPA (₹1–2L/month). Contract-based. Stability unlike franchise roles. The prestige of working directly with India's national Olympic programme (TOPS). Think: the people behind Neeraj Chopra's training.</div></div></div>
+      <div class="route"><span class="rbadge rb-law">Law</span><div class="route-info"><div class="route-name">Sports Lawyer (LawNK, Cyril Amarchand sports practice)</div><div class="route-desc">₹8–15 LPA for associates at top sports law firms. Senior sports lawyers with ICC/BCCI clients: ₹35 LPA – ₹1 Cr+. India's most lucrative and least crowded entry track. But you need the legal credentials first.</div></div></div>
+    </div>
+
+    <div class="pwpanel" id="ipw-india-leaders">
+      <div class="info-box">India's sports industry leaders come from three distinct educational backgrounds. This pattern tells you clearly which route leads where.</div>
+      <div class="leader"><div class="leader-av" style="background:#FFF7ED;color:#92400E">VR</div><div><div class="leader-name">Viren Rasquinha — MD & CEO, Olympic Gold Quest</div><div class="leader-role">BCom MMK College Mumbai → ISB Hyderabad MBA (2009)</div><div class="leader-edu">Athlete pathway: India hockey captain (Athens 2004) → ISB MBA → almost took a corporate job → OGQ CEO. 13 of India's last 21 Olympic medalists. Arjuna Award 2005.</div><div class="leader-path">The template: elite athlete + premier MBA = sports industry C-suite.</div></div></div>
+      <div class="leader"><div class="leader-av" style="background:#FDF2F8;color:#9D174D">NK</div><div><div class="leader-name">Nandan Kamath — Founder LawNK + Co-founder GoSports</div><div class="leader-role">NLSIU 2000 → Oxford (Rhodes) → Harvard LLM → Davis Polk California</div><div class="leader-edu">Karnataka U-16 cricket captain → sports law pioneer → drafted India's TOPS scheme → ICC 2011 Cricket World Cup official law firm.</div><div class="leader-path">The template: India's top law schools + sports passion = India's most elite sports career.</div></div></div>
+      <div class="leader"><div class="leader-av" style="background:var(--sv-red-light);color:var(--sv-red-dark)">SM</div><div><div class="leader-name">Saumil Majmudar — CEO & Co-founder, Sportz Village</div><div class="leader-role">IIT Bombay (BTech) → IIM Bangalore (PGDM) → Wipro</div><div class="leader-edu">Maharashtra Badminton team at IIT → IIM → Wipro 3 years → founded Sportz Village. 18,000+ schools, 66 lakh children, UAE expansion, PathwayZ36 initiative.</div><div class="leader-path">The template: IIT + IIM + sport = India's largest youth sports platform.</div></div></div>
+      <div class="leader"><div class="leader-av" style="background:var(--sv-green-light);color:#065F46">MG</div><div><div class="leader-name">Mustafa Ghouse — Founding CEO JSW Sports → CEO Centre Court Capital</div><div class="leader-role">Professional tennis player — India Davis Cup, Asian Games bronze 2002 — no traditional business degree</div><div class="leader-edu">Built Bengaluru FC from scratch, founded the Inspire Institute of Sport, led Delhi Capitals commercial strategy. Fortune India 40 Under 40.</div><div class="leader-path">The template: elite athlete background alone is enough at JSW/franchise level — but rare.</div></div></div>
+      <div class="leader"><div class="leader-av" style="background:#EFF6FF;color:#1E40AF">TM</div><div><div class="leader-name">Tuhin Mishra — MD & Co-founder, Baseline Ventures</div><div class="leader-role">Sports marketing entrepreneurship</div><div class="leader-edu">Manages PV Sindhu, Kidambi Srikanth commercial interests. Founded Prime Volleyball League. India's leading athlete management agency.</div><div class="leader-path">The template: sports marketing expertise + entrepreneurship = athlete representation career.</div></div></div>
+    </div>
+
+    <div class="pwpanel" id="ipw-india-tracks">
+      <div class="section-label" style="margin-bottom:.5rem">9 tracks — what you do, who hires you, what you earn</div>
+      <div class="route"><span class="rbadge rb-general">Ops</span><div class="route-info"><div class="route-name">Sports Operations & Event Management</div><div class="route-desc">Run the match day, coordinate logistics, manage venues. IPL, ISL, PKL, Khelo India. Entry: ₹3–6 LPA → Ops Head: ₹20–35 LPA. Biggest hiring track for IISM graduates. Top employers: IPL franchises, IMG Reliance, Procam.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Analytics</span><div class="route-info"><div class="route-name">Sports Analytics & Performance Technology</div><div class="route-desc">Fastest growing. Franchise player analysis, fan engagement data, broadcast metrics. Sportz Interactive, Stats Perform, iSportz, franchise analytics teams. Entry: ₹5–8 LPA → Sr Analyst: ₹15–25 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Marketing</span><div class="route-info"><div class="route-name">Sports Marketing & Brand Partnerships</div><div class="route-desc">Sponsorship sales, brand activation, athlete endorsement strategy. IMG Reliance, Baseline Ventures, franchise marketing teams. Highest commission ceiling. Entry: ₹4–7 LPA → Sr VP: ₹25–50 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Media</span><div class="route-info"><div class="route-name">Sports Media & Content</div><div class="route-desc">Broadcast, digital content, commentary, OTT strategy. Star Sports, Sony Sports, Viacom18, Cricbuzz, ESPNcricinfo. Entry: ₹3–5 LPA → Sr Producer/Editor: ₹15–25 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-law">Law</span><div class="route-info"><div class="route-name">Sports Law & Governance</div><div class="route-desc">Contracts, IP, federation governance, anti-doping, dispute resolution. LawNK, Cyril Amarchand sports practice. Entry associate: ₹8–12 LPA → Senior partner level: ₹35 LPA – ₹1 Cr+.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Athlete Mgmt</span><div class="route-info"><div class="route-name">Athlete Management & Representation</div><div class="route-desc">Contract negotiation, endorsement management, career planning. Baseline Ventures, Rhiti Sports, JSW Sports. Commission-based at senior level. Entry: ₹4–7 LPA → Sr Agent: ₹20–40 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-online">Esports</span><div class="route-info"><div class="route-name">Esports & Gaming</div><div class="route-desc">India's fastest-emerging track. NODWIN Gaming, KRAFTON India, WinZO, Skyesports. Growing 30% annually. Entry: ₹3–6 LPA → Sr Operations/Marketing: ₹12–20 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-general">Science</span><div class="route-info"><div class="route-name">High Performance & Sports Science</div><div class="route-desc">Coaching certifications (SAI NCC 1–3, AFC, IAAF), sports psychology, physio, S&C. SAI, IIS Bellary (JSW), franchise support staff. Entry: ₹3–6 LPA → High Perf Director: ₹20–40 LPA.</div></div></div>
+      <div class="route"><span class="rbadge rb-specialist">Entrepreneur</span><div class="route-info"><div class="route-name">Sports Entrepreneurship</div><div class="route-desc">Build a sports tech startup, academy, sports tourism platform, or grassroots organisation. NSRCEL IIM Bangalore supports sports startups. Sportz Village, PathwayZ, Dream Sports all started this way. Unlimited ceiling.</div></div></div>
+    </div>
+  </div><!-- /irp-india -->
+
+  <!-- ─── SINGAPORE INDUSTRY ─── -->
+  <div class="rpanel" id="irp-singapore">
+    <div class="info-box">Singapore's sports industry is government-led and exceptionally professionalised. Sport Singapore is the central employer. Small market but high salaries and strong regional connections to FIFA and AFC offices.</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry</div><div class="sband-val">S$2,500–4,000/mo</div><div class="sband-note">≈ ₹15–25 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid</div><div class="sband-val">S$4,500–7,000/mo</div><div class="sband-note">≈ ₹28–44 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior</div><div class="sband-val">S$8,000–15,000/mo</div><div class="sband-note">≈ ₹50–95 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">Sport Singapore (SportSG)</span><span class="emp">Singapore NOC</span><span class="emp">National Sports Associations (55)</span><span class="emp">Singapore Sports Hub</span><span class="emp">NTU / SMU sports admin</span><span class="emp">FIFA / AFC regional offices</span><span class="emp">Nike / Adidas / Puma APAC</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">NTU / SMU</span><div class="route-info"><div class="route-name">Degree at NTU or SMU → Employment Pass</div><div class="route-desc">Most direct route. Sports science at NTU or business at SMU → apply to SportSG or national association roles. Employment Pass requires minimum salary ~S$5,000/mo (2025).</div></div></div>
+    <div class="route"><span class="rbadge rb-online">Online</span><div class="route-info"><div class="route-name">GIS MSc (online from India) → apply to FIFA/AFC/SportSG</div><div class="route-desc">Study GIS online → build Singapore industry network → apply to FIFA/AFC regional offices. Requires 3–5 yrs Indian sports industry experience first. GIS alumni in FIFA, AFC, and Premier League globally.</div><div class="route-inst">gis.sport</div></div></div>
+    <div class="warn-box">⚠️ Singapore work pass (Employment Pass or S Pass) required after graduation. Check Ministry of Manpower requirements. Singapore PR or citizenship needed for most spex scholarships.</div>
+  </div>
+
+  <!-- ─── DUBAI INDUSTRY ─── -->
+  <div class="rpanel" id="irp-dubai">
+    <div class="info-box">Dubai is the fastest-growing sports events market in the world. Tax-free salaries improve real value vs India by 25–30%. Indian cricket marketing professionals have a genuine edge in UAE cricket roles (ILT20, Emirates Cricket Board).</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry (tax-free)</div><div class="sband-val">AED 6–10K/mo</div><div class="sband-note">≈ ₹14–23 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid (tax-free)</div><div class="sband-val">AED 12–20K/mo</div><div class="sband-note">≈ ₹28–46 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior (tax-free)</div><div class="sband-val">AED 25–50K/mo</div><div class="sband-note">≈ ₹58–115 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">Dubai Sports Council</span><span class="emp">ILT20 franchises (6)</span><span class="emp">Emirates Cricket Board</span><span class="emp">Formula E / F1 Abu Dhabi</span><span class="emp">Ironwood Sports Management</span><span class="emp">UAE Football Association</span><span class="emp">Dubai Expo / major events bodies</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">Ironwood Dubai</span><div class="route-info"><div class="route-name">BBA Sports Management at Ironwood Global Academy</div><div class="route-desc">3-year BBA based in Dubai. Aligned with India's National Sports Policy 2025. Internship partners: Dubai Sports Council, UAE leagues, fitness brands. Best for those building a UAE career base from scratch.</div><div class="route-inst">ironwoodsports.com</div></div></div>
+    <div class="route"><span class="rbadge rb-general">Transfer</span><div class="route-info"><div class="route-name">India sports industry experience → UAE role (most realistic)</div><div class="route-desc">3–5 yrs in IPL/ISL/BCCI operations or marketing → apply to ILT20, Dubai Sports Council, or sports agency MENA offices. Indian cricket knowledge is a genuine competitive edge in UAE cricket roles.</div></div></div>
+  </div>
+
+  <!-- ─── UK INDUSTRY ─── -->
+  <div class="rpanel" id="irp-uk">
+    <div class="info-box">The UK has the world's most commercially developed sports ecosystem outside the US. Premier League alone generates £6B+ annually. Graduate Route visa (2 years post-study, no employer sponsorship needed) makes it the most career-accessible English-speaking destination after Australia.</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry</div><div class="sband-val">£22–30K/yr</div><div class="sband-note">≈ ₹23–31 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid</div><div class="sband-val">£35–60K/yr</div><div class="sband-note">≈ ₹36–62 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior</div><div class="sband-val">£70–150K+/yr</div><div class="sband-note">≈ ₹72–155 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">Premier League clubs (20)</span><span class="emp">ECB</span><span class="emp">The FA</span><span class="emp">UK Athletics</span><span class="emp">IMG Media</span><span class="emp">Wasserman</span><span class="emp">Sportcal / Nielsen Sports</span><span class="emp">BBC Sport / Sky Sports</span><span class="emp">DAZN</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">Loughborough</span><div class="route-info"><div class="route-name">Loughborough — MSc Sport Management / Science (UK #1 for sport)</div><div class="route-desc">International PG bursary: £12,000 off tuition. Strong placement into UK sport federations, leagues, and agencies. India-specific: Virendra Kumar Dhall Scholarship up to £2,500/yr.<br><span class="route-inst">lboro.ac.uk/sport</span></div></div></div>
+    <div class="route"><span class="rbadge rb-online">GIS</span><div class="route-info"><div class="route-name">Global Institute of Sport — MSc International Sport Management</div><div class="route-desc">Top-ranked SportBusiness 2025. Fully online — study from India or UK. Alumni in Premier League, F1, international federations. Most cost-effective UK-equivalent qualification. <span class="route-inst">gis.sport</span></div></div></div>
+    <div class="success-box" style="margin-top:.75rem">✅ Graduate Route visa: 2 years post-study work in UK (3 for PhDs) — no employer sponsorship needed. This is your window to build UK sports industry experience before applying for a Skilled Worker visa.</div>
+  </div>
+
+  <!-- ─── EUROPE INDUSTRY ─── -->
+  <div class="rpanel" id="irp-europe">
+    <div class="info-box">Europe's sports industry is fragmented. Football dominates everywhere. Analytics roles at Sportradar and Deltatre are English-only and genuinely accessible. Germany's near-free tuition is the standout structural advantage. Most other roles require local language skills.</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry</div><div class="sband-val">€28–38K/yr</div><div class="sband-note">≈ ₹25–34 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid</div><div class="sband-val">€45–65K/yr</div><div class="sband-note">≈ ₹40–58 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior</div><div class="sband-val">€75–140K+/yr</div><div class="sband-note">≈ ₹67–125 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">UEFA (Nyon, Switzerland)</span><span class="emp">FIFA (Zürich)</span><span class="emp">World Athletics (Monaco)</span><span class="emp">Bundesliga clubs</span><span class="emp">Sportradar (Switzerland)</span><span class="emp">Deltatre (Italy)</span><span class="emp">adidas AG HQ (Germany)</span><span class="emp">Puma SE HQ (Germany)</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">Germany</span><div class="route-info"><div class="route-name">Germany public universities — ~€300–500/semester total fees</div><div class="route-desc">Sports management and science degrees at University of Hamburg, TU Munich, others. English-taught programmes increasing. Post-study Chancenkarte (1-yr job search visa). Best value-for-quality route in Europe. <span class="route-inst">daad.de</span></div></div></div>
+    <div class="route"><span class="rbadge rb-general">Analytics</span><div class="route-info"><div class="route-name">Sportradar / Deltatre — English-only data and tech roles</div><div class="route-desc">Sportradar (Switzerland/Germany) and Deltatre (Italy/UK) are the two largest sports data companies in the world. English-only roles available in analytics, product, and technology. Strong pathway for Indian analytics graduates. Entry: €32,000–50,000.</div></div></div>
+  </div>
+
+  <!-- ─── AUSTRALIA INDUSTRY ─── -->
+  <div class="rpanel" id="irp-australia">
+    <div class="info-box">Australia combines a world-class athlete support system (AIS) with strong university-industry links and the most generous post-study work visa of any country in this guide. Cricket Australia's growing South Asia focus creates real entry points for Indian professionals with BCCI/IPL experience.</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry</div><div class="sband-val">A$55–70K/yr</div><div class="sband-note">≈ ₹30–38 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid</div><div class="sband-val">A$80–110K/yr</div><div class="sband-note">≈ ₹44–60 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior</div><div class="sband-val">A$130–220K+/yr</div><div class="sband-note">≈ ₹71–120 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">Cricket Australia</span><span class="emp">Football Australia</span><span class="emp">AIS</span><span class="emp">Sport Australia</span><span class="emp">AFL (Australian Football League)</span><span class="emp">NRL</span><span class="emp">A-League clubs (12)</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">QUT</span><div class="route-info"><div class="route-name">QUT — Sport Science + Business + AIS scholarship</div><div class="route-desc">QUT-AIS scholarship: A$5,000/yr for eligible athletes. Industry placements with Cricket Australia, Queensland Maroons, Brisbane Lions. Post-study work visa: 2–4 years. International fees: ~A$34,000/yr. <span class="route-inst">qut.edu.au</span></div></div></div>
+    <div class="route"><span class="rbadge rb-general">Transfer</span><div class="route-info"><div class="route-name">India cricket experience → Cricket Australia roles</div><div class="route-desc">Cricket Australia's South Asia strategy creates real opportunities for Indian professionals with IPL, BCCI, or Indian sports marketing experience. Their commercial and events teams are actively growing the South Asia engagement function.</div></div></div>
+    <div class="success-box" style="margin-top:.75rem">✅ Australia's Temporary Graduate visa (subclass 485): 2–4 years post-study work rights depending on qualification. The most generous post-study entitlement of any country in this guide. Use it to build experience → convert to employer-sponsored Skilled Worker visa.</div>
+  </div>
+
+  <!-- ─── USA INDUSTRY ─── -->
+  <div class="rpanel" id="irp-usa">
+    <div class="success-box">🇺🇸 US$85B+ industry, the global benchmark. Every major sport, agency, league, broadcaster, brand has its HQ here. Entry for Indians = F-1 graduate degree → OPT → H-1B. Competitive but not impossible — 300-500 Indian alumni in US sports industry across Columbia, USC, Michigan, Ohio.</div>
+    <div class="salary-grid">
+      <div class="sband entry"><div class="sband-label">Entry</div><div class="sband-val">US$45-65K/yr</div><div class="sband-note">≈ ₹38-54 LPA</div></div>
+      <div class="sband mid"><div class="sband-label">Mid</div><div class="sband-val">US$85-130K/yr</div><div class="sband-note">≈ ₹71-108 LPA</div></div>
+      <div class="sband senior"><div class="sband-label">Senior</div><div class="sband-val">US$180-350K+/yr</div><div class="sband-note">≈ ₹150-290 LPA</div></div>
+    </div>
+    <div class="emp-grid"><span class="emp">MLB</span><span class="emp">NBA</span><span class="emp">NFL</span><span class="emp">NHL</span><span class="emp">MLS</span><span class="emp">ESPN</span><span class="emp">The Athletic</span><span class="emp">Wasserman</span><span class="emp">CAA Sports</span><span class="emp">Roc Nation Sports</span><span class="emp">IMG / Endeavor</span><span class="emp">Nike HQ (Beaverton)</span><span class="emp">Adidas North America</span><span class="emp">Under Armour</span><span class="emp">Fanatics</span><span class="emp">DraftKings / FanDuel</span></div>
+    <div class="route" style="margin-top:.75rem"><span class="rbadge rb-specialist">Columbia</span><div class="route-info"><div class="route-name">Columbia SPS — MS Sports Management (NYC)</div><div class="route-desc">Evening + part-time. NYC = direct access to all major league HQs (NBA, NFL, MLB, MLS). Strong Indian alumni network. Fees ~US$80K.</div><div class="route-inst">sps.columbia.edu</div></div></div>
+    <div class="route"><span class="rbadge rb-specialist">USC</span><div class="route-info"><div class="route-name">USC Annenberg + Marshall — Sports Management</div><div class="route-desc">LA-based. CAA, WME, Wasserman HQ access. STEM-designated option = 36-month OPT. Strong for athlete representation + digital media roles.</div><div class="route-inst">annenberg.usc.edu</div></div></div>
+    <div class="route"><span class="rbadge rb-general">Ohio U</span><div class="route-info"><div class="route-name">Ohio University — MSA Sports Administration (best value)</div><div class="route-desc">Oldest US sports MSA. Strongest alumni network in league front offices. ~US$40K fees — half of coastal schools. Placement rate 90%+.</div><div class="route-inst">ohio.edu</div></div></div>
+    <div class="warn-box" style="margin-top:.75rem">⚠️ H-1B lottery visa post-OPT. Current odds ~30% selection. Plan B = Canadian work visa (TN-Canada transfer if you're willing to move) or return to India with US alumni network intact (often more valuable than a US job).</div>
+  </div>
+
+</div><!-- /section -->
+</div><!-- /pp-industry -->
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT FORM + FOOTER + SCRIPTS
+     ═══════════════════════════════════════════════ -->
+
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 4: FUNDING & FINANCIAL SUPPORT
+     ═══════════════════════════════════════════════ -->
+<div class="page-panel" id="pp-funding">
+<div class="section">
+  <div class="section-label">Money is never the whole problem. But it's always part of it.</div>
+  <h2 class="section-title">💰 Funding your sports pathway</h2>
+  <p class="section-sub">Step 1: be honest about your funding situation. Step 2: pick the matching route. Step 3: apply early and apply to many.</p>
+
+  <!-- Funding decision tree -->
+  <div class="region-tabs" style="justify-content:center">
+    <button class="rtab active" onclick="showRegion('funded',this,'funding')">💪 I'm self-funded</button>
+    <button class="rtab" onclick="showRegion('scholarship',this,'funding')">🎓 Scholarships</button>
+    <button class="rtab" onclick="showRegion('govjobs',this,'funding')">🏛️ Govt jobs + reservations</button>
+    <button class="rtab" onclick="showRegion('private',this,'funding')">🏢 Private sector + CSR</button>
+  </div>
+
+  <!-- ─── SELF-FUNDED ─── -->
+  <div class="rpanel active" id="rp-funded">
+    <div class="info-box">Self-funded = you or your family can cover fees up to ₹25L-₹1Cr across a sport career. This opens premium academies, overseas college, specialist coaching, and the sports-management industry route. Use it well — don't overspend on prestige when programme fit matters more.</div>
+    <h4 class="sub-section">Where the money actually goes (realistic ranges)</h4>
+    <div class="org"><div class="org-info"><div class="org-name">High-performance coaching (pre-college)</div><div class="org-desc">Elite sport-specific coaching in India: ₹3-15L/yr at a top academy (JSW, Padukone Badminton Academy, Mahesh Bhupathi Tennis Villas). Overseas summer programmes: US$5-15K for 2-8 weeks. Year-round overseas academy (IMG Academy): US$80K+/yr.</div><div class="org-tags"><span class="tag tag-athlete">₹3-15L/yr India</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Overseas undergrad (USA / UK / Australia)</div><div class="org-desc">USA (private, 4yr): US$240-320K total. UK (3yr): £75-130K total. Australia (3yr): A$90-150K total. After any partial scholarships. Factor in return on investment: a D1 scholarship offsets ~60-80% of cost.</div><div class="org-tags"><span class="tag tag-intl">US$240K+ US</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Sports industry education (India)</div><div class="org-desc">IIM Rohtak ePGDSM: ~₹3.5L. GISB Mumbai: ~₹8-10L. IIM Mumbai + IISM PGPSM: ~₹8-10L est. IISM Mumbai BSM/MSM: ~₹3-5L total. ISB MBA (sports electives): ~₹45L.</div><div class="org-tags"><span class="tag tag-industry">₹3-10L typical</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Education loans (self-fund top-up)</div><div class="org-desc">HDFC Credila, Avanse, Auxilo, ICICI offer education loans up to ₹1Cr+ for overseas study. Sports-specific loans: rare — most require academic collateral. Expect 10-12% p.a. interest. Moratorium during study + 6 months. Never sign without comparing 3 lenders.</div><div class="org-tags"><span class="tag tag-athlete">10-12% p.a.</span></div></div></div>
+    <div class="warn-box" style="margin-top:1rem">⚠️ Do NOT remortgage the family home. The outcome variance in sport is too high. If you can't write the cheque from savings, switch to scholarship/govt-job routes.</div>
+  </div>
+
+  <!-- ─── SCHOLARSHIPS ─── -->
+  <div class="rpanel" id="rp-scholarship">
+    <div class="info-box">Scholarships in India pay less than parents think but more than athletes think. Apply early (by Class 10-11), apply to many, and understand that most are renewable yearly based on performance.</div>
+    <h4 class="sub-section">Government scholarships</h4>
+    <div class="org"><div class="org-info"><div class="org-name">Khelo India Youth Scheme (KISS)</div><div class="org-desc">₹5L/year for top-performing youth athletes (Class 8-12). Selection via Khelo India Games (Youth + University). Covers training, kit, diet, competitions. Most direct govt scholarship for adolescent athletes. Annual renewal based on performance.</div><div class="org-tags"><span class="tag tag-athlete">₹5L/yr</span><span class="tag tag-sv">Govt</span></div></div><a class="org-link" href="https://kheloindia.gov.in/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Target Olympic Podium Scheme (TOPS)</div><div class="org-desc">Elite athletes with realistic Olympic/Paralympic medal potential. Stipend + foreign training + custom equipment + coaching grants. Top tier = ~₹50,000/month living allowance. Controlled by Mission Olympic Cell, Sports Ministry. Selection is extremely competitive.</div><div class="org-tags"><span class="tag tag-sv">Elite</span></div></div><a class="org-link" href="https://sportsauthorityofindia.nic.in/sai_new/target-olympic-podium" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Pradhan Mantri Khel Vikas Yojana (State + Central)</div><div class="org-desc">State-level top-ups for athletes at national/state level. Varies by state — Haryana, Punjab, Odisha most generous (₹3-25L medal cash awards). Check your state sports department for specifics.</div><div class="org-tags"><span class="tag tag-sv">State-specific</span></div></div></div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">Private + foundation scholarships</h4>
+    <div class="org"><div class="org-info"><div class="org-name">Olympic Gold Quest (OGQ)</div><div class="org-desc">₹15-60L/yr for Olympic-pathway athletes. Coaching, sports science, nutrition, physiotherapy, foreign training. Supported 13 of India's last 21 Olympic medallists. By invitation — they scout at Khelo India + national championships.</div><div class="org-tags"><span class="tag tag-ogq">₹15-60L/yr</span></div></div><a class="org-link" href="https://ogq.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">GoSports Foundation — multiple scholarships</div><div class="org-desc">Rahul Dravid Athlete Mentorship Programme (youth), Para Champions Programme, Elite Athlete Scholarship. ₹1-15L/yr. Application window typically Jan-Mar each year. Strong for emerging Olympic/Paralympic talent not yet on OGQ radar.</div><div class="org-tags"><span class="tag tag-gosports">₹1-15L/yr</span></div></div><a class="org-link" href="https://gosports.in/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Reliance Foundation Young Champs (RFYC)</div><div class="org-desc">Football-specific residential programme for boys 8-14. 100% scholarship: training, schooling, boarding, kit, nutrition. Residential at Navi Mumbai. Selection via grassroots scouting camps in 100+ cities.</div><div class="org-tags"><span class="tag tag-athlete">100% scholarship</span><span class="tag tag-sv">Age 8-14</span></div></div><a class="org-link" href="https://www.reliancefoundation.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">JSW Inspire Institute of Sport (IIS), Vijayanagar</div><div class="org-desc">Residential high-performance centre for boxing, wrestling, athletics, judo, swimming. Full scholarship (training + education + boarding) for selected athletes age 10-21. Selection is competitive and talent-scouted.</div><div class="org-tags"><span class="tag tag-athlete">100% scholarship</span></div></div><a class="org-link" href="https://inspireinstituteofsport.com/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">AIFF Elite Academy (Football)</div><div class="org-desc">Fully funded boys' residential football academy for age 13-17. Selection by AIFF scouts. Training + schooling + boarding free. Direct pipeline to India U-17/U-20 + ISL reserve teams.</div><div class="org-tags"><span class="tag tag-athlete">Free · Boys 13-17</span></div></div><a class="org-link" href="https://www.the-aiff.com/" target="_blank">Visit AIFF →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Tata Trusts — Sports Excellence Programme</div><div class="org-desc">Funding for athletics, archery, football, and Paralympic sports. Partners with smaller federations and NGOs. Grants typically ₹5-25L for programme/athlete support.</div><div class="org-tags"><span class="tag tag-sv">Partner-led</span></div></div><a class="org-link" href="https://www.tatatrusts.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Mittal Champions Trust (MCT)</div><div class="org-desc">Funds emerging Indian Olympic sports — wrestling, shooting, archery. ₹3-25L/year depending on athlete tier. Long-running since 2005. Works with SAI + federations.</div><div class="org-tags"><span class="tag tag-sv">₹3-25L/yr</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Dream Sports Foundation (Dream11)</div><div class="org-desc">Supports grassroots, youth, and para-sports. Deploys CSR + foundation funds. Sports covered: chess, football, athletics, and Paralympic sports. Grants via partnerships with SAI, OGQ, GoSports.</div><div class="org-tags"><span class="tag tag-sv">CSR + foundation</span></div></div><a class="org-link" href="https://dreamsportsfoundation.com/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Sportz Village scholarship advocacy</div><div class="org-desc">Sportz Village connects talent from its 18,000+ partner schools to these foundations and government schemes. If your school is a SV partner, ask your PE teacher about referrals.</div><div class="org-tags"><span class="tag tag-sv">Sportz Village</span></div></div><a class="org-link" href="https://sportzvillage.com/" target="_blank">Visit →</a></div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">Overseas scholarships (quick reference)</h4>
+    <div class="info-box">For detailed country-by-country scholarship info, see the USA, UK, Australia, Europe tabs in <strong>Explore Pathways</strong>. Key routes:<br>• <strong>USA NCAA D1/D2:</strong> ~US$3.7B total athletic aid pool. Partial to full rides. See USA tab.<br>• <strong>UK Loughborough / Bath:</strong> Virendra Kumar Dhall Scholarship (India-specific, £2,500/yr). International PG bursaries £12K.<br>• <strong>Singapore SOF-Peter Lim:</strong> S$1,000-5,000/yr for student-athletes.<br>• <strong>Australia AIS-University:</strong> A$5,000/yr × 3 years for athletes at partner unis.</div>
+  </div>
+
+  <!-- ─── GOVT JOBS ─── -->
+  <div class="rpanel" id="rp-govjobs">
+    <div class="success-box">🏛️ India's government sector is an under-appreciated career haven for athletes. Most central ministries, PSUs, defence, police, and Railways reserve 2-5% of recruitment for sportspersons. For state-level+ athletes, these are guaranteed career paths — not 'backups'.</div>
+
+    <h4 class="sub-section">Central government: Sports quota recruitment</h4>
+    <div class="org"><div class="org-info"><div class="org-name">Indian Railways — ~2% sports quota</div><div class="org-desc">Biggest sports employer in India. ~4,500+ sportspersons currently employed across zones. Recruits national/international medallists directly into Group C + Group D posts. Pays during training; work-study flexibility. Roles: Ticket Checkers, Clerks, Sports Officers. Apply via Railway Recruitment Boards (RRBs) sports quota notifications.</div><div class="org-tags"><span class="tag tag-athlete">Biggest employer</span><span class="tag tag-sv">Govt</span></div></div><a class="org-link" href="https://indianrailways.gov.in/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Services Sports Control Board (SSCB) — Army/Navy/Air Force</div><div class="org-desc">Army Sports Institute (Pune), Navy, Air Force recruit national-level athletes via Havildar/JWO/JCO ranks + Officer direct entry (Services Selection Board). Lifetime career + pension. Pays full salary during training. Olympic-level training support. Neeraj Chopra is a Subedar Major in Indian Army.</div><div class="org-tags"><span class="tag tag-athlete">Lifetime career</span><span class="tag tag-sv">Army/Navy/AF</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Central Armed Police Forces (CRPF, BSF, CISF, ITBP, SSB)</div><div class="org-desc">Direct recruitment of international + national medallists into Constable, Sub-Inspector ranks. CRPF sports quota is well-organised (cross-country, athletics, boxing, wrestling). Posting choices often linked to family domicile.</div><div class="org-tags"><span class="tag tag-sv">CAPF</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">State Police + Central Excise/Customs + Income Tax</div><div class="org-desc">Every state police + direct tax cadres recruit via sports quota. Inspector/Sub-Inspector level. Stable postings, good pension, and often local postings. Apply through state police recruitment boards or SSC CGL (sports quota).</div><div class="org-tags"><span class="tag tag-sv">SSC CGL</span></div></div><a class="org-link" href="https://ssc.nic.in/" target="_blank">SSC →</a></div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">Public Sector Undertakings (PSUs)</h4>
+    <div class="org"><div class="org-info"><div class="org-name">ONGC — Oil and Natural Gas Corporation</div><div class="org-desc">One of India's largest sports-employing PSUs. Sports quota recruits across cricket, hockey, wrestling, athletics, shooting. Direct entry at Assistant Technician + Officer ranks. Competitive selection — national-level minimum.</div><div class="org-tags"><span class="tag tag-sv">Premium PSU</span></div></div><a class="org-link" href="https://ongcindia.com/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Bharat Petroleum (BPCL), IndianOil (IOCL), Bharat Electronics (BEL), HPCL, GAIL</div><div class="org-desc">All run strong sports teams and recruit via sports quota. Typical roles: Officer/Management Trainee with sports obligations. Full salary + sports training time + competition leave. ₹8-18 LPA entry.</div><div class="org-tags"><span class="tag tag-sv">₹8-18 LPA entry</span></div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Public Sector Banks — SBI, Syndicate, IOB, Central, BoB</div><div class="org-desc">SBI and several nationalised banks recruit national/international sportspersons directly at Officer level + sports quota vacancies. Bank-sponsored athletes continue competing under institutional teams.</div><div class="org-tags"><span class="tag tag-sv">PSB</span></div></div></div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">State-level opportunities</h4>
+    <div class="info-box"><strong>Haryana, Punjab, Odisha, Kerala, Maharashtra</strong> are most generous — cash awards for medals (₹3L-₹25L per medal), government jobs, house plots, and educational allowances. Haryana's 'Medal Laao, Naukri Pao' scheme is the gold standard. Odisha's Kalinga Institute of Industrial Technology (KIIT) + state Sports Policy 2023 created 300+ direct athlete jobs.</div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">Reservation specifics (current — verify before applying)</h4>
+    <div class="warn-box">⚠️ These percentages change with policy updates. Verify the exact sports quota notification before applying.<br>• Central government: Typically 2% of Group C + Group D posts.<br>• Railways: 2% (~4,500+ athletes currently employed).<br>• CAPFs (CRPF, BSF, CISF, ITBP, SSB): 2-5% sports quota depending on rank.<br>• Public Sector Banks: Discretionary — typically 5-15 sports hires per year per bank.<br>• State police: Varies 1-3% by state. Haryana and Punjab are highest.<br>• Most require representing state/country at national/international level.</div>
+  </div>
+
+  <!-- ─── PRIVATE + CSR ─── -->
+  <div class="rpanel" id="rp-private">
+    <div class="info-box">🏢 Private sector employment for athletes in India is growing but less structured than govt. JSW, Reliance, ONGC (treated as PSU above), and a few MNCs employ elite athletes. CSR funds also flow via large conglomerates + global brands.</div>
+
+    <h4 class="sub-section">Corporate houses that employ athletes</h4>
+    <div class="org"><div class="org-info"><div class="org-name">JSW Sports + JSW Steel</div><div class="org-desc">Employs Olympic medallists as brand ambassadors + full-time staff. Neeraj Chopra's primary private backer. Inspire Institute of Sport (IIS Bellary) doubles as training base + employment pathway. Best private-sector athlete support in India.</div><div class="org-tags"><span class="tag tag-athlete">Top private</span></div></div><a class="org-link" href="https://www.jswsports.in/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Reliance Sports / Reliance Foundation</div><div class="org-desc">Owns Mumbai Indians (IPL), Reliance Foundation Young Champs (football), Mumbai City FC (ISL). Employs athletes + sports-industry staff across those entities. CSR deployment across grassroots + Olympic pathway.</div><div class="org-tags"><span class="tag tag-industry">IPL + ISL + football</span></div></div><a class="org-link" href="https://www.reliancefoundation.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Adani Sports</div><div class="org-desc">Recent entrant (Adani Sportsline). Involved in kabaddi, squash, and shooting sponsorships. Still building structured employment — but growing CSR + athlete sponsorship.</div><div class="org-tags"><span class="tag tag-industry">Emerging</span></div></div></div>
+
+    <h4 class="sub-section" style="margin-top:1.5rem">CSR-funded athlete support (via foundations)</h4>
+    <div class="org"><div class="org-info"><div class="org-name">HCL Foundation + HCL DDP (HCL Tech CSR)</div><div class="org-desc">CSR funding for grassroots sports, school PE programmes. Deploys via partners like Sportz Village. If your school/academy is an HCL CSR grantee, tap that channel for resources.</div><div class="org-tags"><span class="tag tag-sv">CSR partner</span></div></div><a class="org-link" href="https://www.hclfoundation.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Tata Trusts + Tata Steel Sports</div><div class="org-desc">Grassroots + Olympic funding. Tata Steel Sports runs Jamshedpur archery academy (world-class), Naval Tata hockey academy. If you're a hockey or archery athlete: these are well-funded structured pathways.</div><div class="org-tags"><span class="tag tag-sv">Long-term</span></div></div><a class="org-link" href="https://www.tatatrusts.org/" target="_blank">Visit →</a></div>
+    <div class="org"><div class="org-info"><div class="org-name">Bajaj Finserv + Bajaj Group CSR</div><div class="org-desc">CSR in sports primarily through Bajaj Allianz + Bajaj Auto grants to national federations. Scattered but meaningful — worth a check with individual federations (athletics, wrestling).</div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Wipro Foundation</div><div class="org-desc">Primarily education-focused CSR, with sports in school-sports context. Partners with Sportz Village and other grassroots orgs to fund school PE infrastructure.</div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">Nike / Adidas / Decathlon India</div><div class="org-desc">Global brand CSR focuses on community + school sports. Nike (Go Out + Play) + Decathlon (Play Forever) fund local grassroots programmes. Individual athlete sponsorships rare — focus on team/community-level grants.</div></div></div>
+    <div class="org"><div class="org-info"><div class="org-name">GoSports Foundation (as CSR conduit)</div><div class="org-desc">Receives CSR from multiple corporates + deploys to athletes. If you're a national-level Olympic/Paralympic-pathway athlete, this is your single best CSR-funded entry point.</div><div class="org-tags"><span class="tag tag-gosports">Conduit</span></div></div><a class="org-link" href="https://gosports.in/" target="_blank">Visit →</a></div>
+
+    <div class="info-box" style="margin-top:1rem"><strong>Reality:</strong> Private sector employment for athletes in India is ~5% of total athlete employment. Government + PSU path is still where 90% of career jobs are for sub-elite athletes. Private companies sponsor elite athletes (top 5%) as brand ambassadors, not as employees.</div>
+  </div>
+
+</div><!-- /section -->
+</div><!-- /pp-funding -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 5: TOOLKIT
+     ═══════════════════════════════════════════════ -->
+<div class="page-panel" id="pp-toolkit">
+<div class="section">
+  <div class="section-label">Tools you can use right now</div>
+  <h2 class="section-title">🎯 Your Toolkit</h2>
+  <p class="section-sub">Self-audit your athlete profile, build your application to a college coach, book a conversation with someone who's walked this path, or register your agency to help candidates.</p>
+
+  <div class="region-tabs" style="justify-content:center">
+    <button class="rtab active" onclick="showRegion('audit',this,'toolkit')">🔍 Self-audit</button>
+    <button class="rtab" onclick="showRegion('appbuilder',this,'toolkit')">📝 Application builder</button>
+    <button class="rtab" onclick="showRegion('connector',this,'toolkit')">🤝 Talk to a mentor</button>
+    <button class="rtab" onclick="showRegion('agency',this,'toolkit')">🏢 For Agencies</button>
+  </div>
+
+  <!-- ─── SELF-AUDIT ─── -->
+  <div class="rpanel active" id="rp-audit">
+    <div class="info-box">A quick self-audit. Takes 2 minutes. Gives you a first read on gaps, realistic next steps, and which of the pathways in this site are most relevant to you. Not a replacement for a conversation with a coach — but a useful starting point.</div>
+    <form id="audit-form" onsubmit="return runAudit(event)" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
+      <label style="grid-column:span 1"><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your sport</span>
+        <select name="sport" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="cricket">Cricket</option>
+          <option value="football">Football</option>
+          <option value="athletics">Athletics</option>
+          <option value="tennis">Tennis</option>
+          <option value="golf">Golf</option>
+          <option value="badminton">Badminton</option>
+          <option value="swimming">Swimming</option>
+          <option value="squash">Squash</option>
+          <option value="shooting">Shooting</option>
+          <option value="wrestling">Wrestling</option>
+          <option value="boxing">Boxing</option>
+          <option value="hockey">Hockey</option>
+          <option value="chess">Chess</option>
+          <option value="other">Other</option>
+        </select></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your current level</span>
+        <select name="level" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="school">School-level only</option>
+          <option value="district">District champion / medal</option>
+          <option value="state">State level / national ranked</option>
+          <option value="national">National medallist</option>
+          <option value="international">International / junior intl</option>
+        </select></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your age</span>
+        <select name="age" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="13">13-14 (Class 8-9)</option>
+          <option value="15">15-16 (Class 10)</option>
+          <option value="17">17-18 (Class 11-12)</option>
+          <option value="19">19-22 (undergrad age)</option>
+          <option value="23">23+ (post-undergrad)</option>
+        </select></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Funding situation</span>
+        <select name="funding" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="selffund">Self-funded (family support)</option>
+          <option value="partial">Partial — need top-up</option>
+          <option value="need">Need scholarship/govt/CSR</option>
+          <option value="none">No resources at all</option>
+        </select></label>
+      <label style="grid-column:span 2"><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">What do you want?</span>
+        <select name="goal" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="play">Play at the highest level I can</option>
+          <option value="study">Study + play (overseas college)</option>
+          <option value="india_study">Study + play (Indian college)</option>
+          <option value="job">Sports-related job / career</option>
+          <option value="industry">Sports industry (non-athlete)</option>
+          <option value="unsure">I don't know yet</option>
+        </select></label>
+      <button type="submit" class="btn-primary" style="grid-column:span 2">🔍 Show my gaps + next steps</button>
+    </form>
+    <div id="audit-output" style="margin-top:1rem"></div>
+  </div>
+
+  <!-- ─── APPLICATION BUILDER ─── -->
+  <div class="rpanel" id="rp-appbuilder">
+    <div class="info-box">Build a structured application to send to a college coach (US/UK/Australia) or an Indian scholarship programme. Output is a plain-text draft you copy/paste into email. Refine before sending.</div>
+    <form id="app-form" onsubmit="return buildApp(event)" style="display:grid;gap:.75rem;margin-top:1rem">
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your full name</span>
+        <input type="text" name="fullname" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Email</span>
+        <input type="email" name="email" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Target coach/programme name</span>
+        <input type="text" name="coachname" placeholder="e.g., Coach Emma Lewis, USC Women's Tennis" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Target college / programme</span>
+        <input type="text" name="college" placeholder="e.g., University of Southern California" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your sport + position/specialty</span>
+        <input type="text" name="sport" placeholder="e.g., Tennis / Singles + Doubles" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Top 3 athletic achievements (one per line)</span>
+        <textarea name="achievements" rows="3" placeholder="Indian U-18 National quarter-finalist 2024&#10;Karnataka state champion 2023-24&#10;AITA ranking: 420 (India)" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Academic summary</span>
+        <input type="text" name="academics" placeholder="e.g., Class 12 CBSE 92%, SAT 1450, IELTS 7.5" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Highlight video link (YouTube / Vimeo unlisted)</span>
+        <input type="url" name="video" placeholder="https://youtu.be/..." required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Why this programme (1-2 sentences)</span>
+        <textarea name="why" rows="2" placeholder="e.g., USC's combination of top-3 tennis program + top-20 business school + LA sport ecosystem is unique globally." required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <button type="submit" class="btn-primary">📝 Generate email draft</button>
+    </form>
+    <div id="app-output" style="margin-top:1rem"></div>
+  </div>
+
+  <!-- ─── MENTOR CONNECTOR ─── -->
+  <div class="rpanel" id="rp-connector">
+    <div class="success-box">🤝 <strong>Been there, done that.</strong> Book a 30-minute video call with someone who's walked the exact pathway you're exploring. Former NCAA athletes, current SportzVillage PathwayZ scouts, Indian Olympians, sports industry professionals. No fee.</div>
+    <form id="connector-form" action="https://formspree.io/f/saumil.majmudar@gmail.com" method="POST" style="display:grid;gap:.75rem;margin-top:1rem">
+      <input type="hidden" name="_subject" value="SportPath - Mentor Connector Request">
+      <input type="hidden" name="form_type" value="mentor-connector">
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your name</span><input type="text" name="name" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Your email</span><input type="email" name="email" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">WhatsApp number</span><input type="tel" name="phone" placeholder="+91 ..." required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Sport + level</span><input type="text" name="sport" placeholder="e.g., Tennis, state-level" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Who do you want to talk to?</span>
+        <select name="mentor_type" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="ncaa">NCAA alumnus (someone who did US college sports)</option>
+          <option value="olympic">Indian Olympic/Paralympic pathway athlete</option>
+          <option value="uk">UK university athlete</option>
+          <option value="industry">Sports industry professional</option>
+          <option value="coach">Coach / high-performance specialist</option>
+          <option value="agent">Sports agent / college placement specialist</option>
+          <option value="unsure">Not sure — you decide</option>
+        </select></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">What do you want to ask/discuss? (150 words)</span><textarea name="question" rows="4" maxlength="800" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Preferred time window</span>
+        <select name="time" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)">
+          <option value="">-- select --</option>
+          <option value="weekday_eve">Weekday evenings (6-9 pm IST)</option>
+          <option value="weekend_morn">Weekend mornings (8-12 IST)</option>
+          <option value="weekend_eve">Weekend evenings (6-9 pm IST)</option>
+          <option value="flexible">Flexible — you pick</option>
+        </select></label>
+      <button type="submit" class="btn-primary">🤝 Request mentor match</button>
+    </form>
+    <div class="info-box" style="margin-top:1rem"><strong>What happens next:</strong> We'll match you with a mentor within 5 working days. First call is 30 minutes via video. If it's useful, you can book follow-ups directly with the mentor.</div>
+  </div>
+
+  <!-- ─── AGENCY INTAKE ─── -->
+  <div class="rpanel" id="rp-agency">
+    <div class="info-box">🏢 Are you an agency, consultant, or organisation that helps young Indian athletes with college placement, scholarships, visa, or career guidance? Add yourself to our directory. We'll route candidates to you based on fit.</div>
+    <form id="agency-form" action="https://formspree.io/f/saumil.majmudar@gmail.com" method="POST" style="display:grid;gap:.75rem;margin-top:1rem">
+      <input type="hidden" name="_subject" value="SportPath - Agency Directory Entry">
+      <input type="hidden" name="form_type" value="agency-directory">
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Organisation name</span><input type="text" name="org_name" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Website</span><input type="url" name="website" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Primary contact name + role</span><input type="text" name="contact" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Email + WhatsApp</span><input type="text" name="contact_details" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Services offered (tick all)</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.3rem">
+          <label><input type="checkbox" name="services" value="US college placement"> US college placement</label>
+          <label><input type="checkbox" name="services" value="UK college placement"> UK college placement</label>
+          <label><input type="checkbox" name="services" value="Australia college placement"> Australia placement</label>
+          <label><input type="checkbox" name="services" value="Scholarship advisory"> Scholarship advisory</label>
+          <label><input type="checkbox" name="services" value="Visa support"> Visa + documentation</label>
+          <label><input type="checkbox" name="services" value="Highlight video production"> Highlight video production</label>
+          <label><input type="checkbox" name="services" value="Sports management education"> Sports management edu</label>
+          <label><input type="checkbox" name="services" value="Athlete career management"> Athlete career mgmt</label>
+          <label><input type="checkbox" name="services" value="Govt-job coaching"> Govt-job coaching</label>
+          <label><input type="checkbox" name="services" value="Other"> Other</label>
+        </div></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Sports covered</span><input type="text" name="sports" placeholder="e.g., Tennis, Golf, Swimming, Cricket" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Fee model (transparent — this helps families trust you)</span><textarea name="fees" rows="2" placeholder="e.g., Flat fee ₹75K-2L for US D1 placement, or % of scholarship awarded, or free/CSR-funded" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Success metrics (last 3 years)</span><textarea name="success" rows="2" placeholder="e.g., 40 Indian athletes placed in NCAA D1/D2 since 2022; avg scholarship $40K/yr" style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <label><span style="display:block;font-weight:600;color:var(--sv-navy);margin-bottom:.3rem">Anything else we should know?</span><textarea name="notes" rows="2" style="width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--sv-border)"></textarea></label>
+      <button type="submit" class="btn-primary">🏢 Submit agency profile</button>
+    </form>
+    <div class="info-box" style="margin-top:1rem">Sportz Village reviews all agency applications. We do not publish agencies we can't verify. Expect a response within 7 working days.</div>
+  </div>
+
+</div><!-- /section -->
+</div><!-- /pp-toolkit -->
+
+<div class="form-section" id="contact-section">
+  <h2>Ready to find <em>your</em> path?</h2>
+  <p>Tell us where you are and where you want to go. Sportz Village's team will reach out with personalised guidance. No spam — just real help from people who've mapped these routes.</p>
+  <div class="form-card">
+    <form id="contact-form" action="https://formspree.io/f/saumil.majmudar@gmail.com" method="POST">
+      <!-- hidden honeypot -->
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_subject" value="SportPath India — New guidance request">
+      <input type="hidden" name="_replyto" value="">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First name *</label>
+          <input class="form-input" type="text" name="first_name" placeholder="Arjun" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name *</label>
+          <input class="form-input" type="text" name="last_name" placeholder="Sharma" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input class="form-input" type="email" name="email" placeholder="arjun@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone (WhatsApp preferred)</label>
+          <input class="form-input" type="tel" name="phone" placeholder="+91 98765 43210">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Current grade / age</label>
+          <select class="form-select" name="grade">
+            <option value="">Select grade...</option>
+            <option>Grade 8</option><option>Grade 9</option><option>Grade 10</option>
+            <option>Grade 11</option><option>Grade 12</option><option>Undergraduate</option>
+            <option>Graduate / Working professional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primary sport</label>
+          <select class="form-select" name="sport">
+            <option value="">Select sport...</option>
+            <option>Cricket</option><option>Football</option><option>Athletics</option>
+            <option>Badminton</option><option>Hockey</option><option>Swimming</option>
+            <option>Basketball</option><option>Tennis</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Which pathway interests you?</label>
+          <select class="form-select" name="pathway">
+            <option value="">Select pathway...</option>
+            <option>Athlete — I want to compete at the highest level</option>
+            <option>Sports professional — coaching, science, physio</option>
+            <option>Sports industry — management, analytics, law, media</option>
+            <option>Not sure yet — help me figure it out</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Region of interest</label>
+          <select class="form-select" name="region">
+            <option value="">Select region...</option>
+            <option>India</option><option>Singapore</option><option>Dubai / UAE</option>
+            <option>UK</option><option>Europe</option><option>Australia</option>
+            <option>USA</option><option>Multiple regions</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Tell us a bit about yourself — your sport, level, and what you're trying to figure out</label>
+          <textarea class="form-textarea" name="message" placeholder="I'm in Grade 10, play cricket at district level, and I want to understand if there's a realistic path to playing cricket in Australia or UK while studying. My bowling speed is around 120 kmph..."></textarea>
+        </div>
+      </div>
+      <button class="form-submit" type="submit">SEND MY REQUEST →</button>
+    </form>
+    <div class="form-success" id="form-success">
+      ✅ Got it! Sportz Village's team will review your details and be in touch within 2 working days. In the meantime, keep exploring the pathways — you're already ahead of 99% of students just by asking the right questions.
+    </div>
+  </div>
+</div>
+
+<footer>
+  Built by <strong>Sportz Village</strong> · SportPath India · <a href="https://sportzvillage.com" target="_blank">sportzvillage.com</a><br>
+  <span style="margin-top:6px;display:block">Data verified to April 2026. Salary figures are indicative ranges from 2024–2025 placement reports and industry surveys. All scholarship and programme details should be independently verified with the respective organisations before applying.</span>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════ -->
+<script>
+// ── Page navigation ──
+function showPage(id, triggerEl) {
+  document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+  document.getElementById('pp-' + id).classList.add('active');
+  document.getElementById('pt-' + id).classList.add('active');
+  if (triggerEl && triggerEl.classList.contains('nav-link')) triggerEl.classList.add('active');
+  // Scroll so the sticky page-tabs dock just under the nav, exposing the selected panel below.
+  const nav = document.querySelector('nav');
+  const tabs = document.querySelector('.page-tabs');
+  if (tabs) {
+    const navH = nav ? nav.offsetHeight : 58;
+    const y = tabs.getBoundingClientRect().top + window.pageYOffset - navH;
+    window.scrollTo({top: Math.max(0, y), behavior: 'smooth'});
+  } else {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+// ── Region tabs (Explore / Funding / Toolkit) ──
+function showRegion(id, btn, scope) {
+  // scope can be 'explore' (default), 'funding', 'toolkit'
+  scope = scope || 'explore';
+  const parent = document.getElementById('pp-' + scope);
+  if (!parent) return;
+  parent.querySelectorAll(':scope > .section > .region-tabs .rtab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll(':scope > .section > .rpanel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const target = document.getElementById('rp-' + id);
+  if (target) target.classList.add('active');
+}
+
+// ── Self-audit logic ──
+function runAudit(e) {
+  e.preventDefault();
+  const f = e.target;
+  const sport = f.sport.value, level = f.level.value, age = f.age.value, funding = f.funding.value, goal = f.goal.value;
+  const gaps = [], steps = [], recs = [];
+
+  // Age-based gating
+  if (age === '13' || age === '15') {
+    steps.push('Register with your district sports federation THIS MONTH. No district performance = no state selection = no scholarship pipeline.');
+    if (level === 'school' || level === 'district') {
+      steps.push('Target: state-level qualification within 12 months. Everything depends on this.');
+    }
+    recs.push('See <b>Class 9-10 decision window</b> at top of India Athlete pathway.');
+  }
+  if (age === '17') {
+    steps.push('If overseas is in scope, register NOW with NCAA Eligibility Center or UK-equivalent. Waiting until Class 12 is too late.');
+  }
+  if (age === '19' || age === '23') {
+    if (goal === 'study') {
+      gaps.push('You are past the typical NCAA entry window (undergrad). Look at NCAA transfer rules + NAIA + graduate-level sport (MS + club sport + NCAA graduate-athlete eligibility).');
+    }
+  }
+
+  // Level vs goal mismatch
+  if (level === 'school' && goal === 'study') {
+    gaps.push('School-level performance alone will not unlock an NCAA D1 or UK scholarship. You need at least state-level ranking first.');
+    steps.push('Prioritise state-level qualification + build a highlight video that shows skill over match outcomes.');
+  }
+  if ((level === 'district' || level === 'state') && goal === 'play') {
+    recs.push('Apply to <b>SAI academies + Khelo India</b> — these are your biggest leverage for structured pathway support.');
+  }
+  if (level === 'national' || level === 'international') {
+    recs.push('<b>OGQ / GoSports / TOPS</b> are within reach. See Funding → Scholarships.');
+    if (goal === 'job') {
+      recs.push('You qualify for <b>Railways / Services / CAPF sports quota</b>. This is the most reliable career path. See Funding → Govt Jobs.');
+    }
+  }
+
+  // Funding-based guidance
+  if (funding === 'selffund' || funding === 'partial') {
+    if (goal === 'study') recs.push('Overseas college = open (US/UK/Australia). See <b>USA</b>, <b>UK</b>, <b>Australia</b> tabs.');
+  }
+  if (funding === 'need' || funding === 'none') {
+    recs.push('Your primary route: Government schemes + foundation scholarships. See <b>Funding → Scholarships</b> tab.');
+    if (funding === 'none') {
+      recs.push('Start with FREE programmes: <b>SAI, AIFF academies, Reliance Young Champs, JSW IIS</b>. Full residential scholarships for selected athletes.');
+    }
+    if (goal === 'study' && (level === 'state' || level === 'national' || level === 'international')) {
+      recs.push('Need-based US college aid (Ivy League + top liberal arts colleges) can cover 100% of cost. See USA tab.');
+    }
+  }
+
+  // Sport-specific
+  const ncaaSupported = ['tennis', 'golf', 'squash', 'athletics', 'swimming', 'football', 'hockey'];
+  if (sport === 'cricket' && goal === 'study') {
+    gaps.push('Cricket is NOT NCAA. US college cricket = not a real pathway. Look at UK (ECB UCCE) or Australia (Sheffield Shield trials) instead.');
+  }
+  if (ncaaSupported.indexOf(sport) !== -1 && goal === 'study') {
+    recs.push('Your sport has strong NCAA presence. Prioritise US + UK over other regions.');
+  }
+  if (sport === 'chess' && goal === 'study') {
+    gaps.push('Chess is not a scholarship sport in most systems. But many US universities (Webster, UT Dallas) have generous chess-specific academic scholarships. Research separately.');
+  }
+
+  // Industry goal
+  if (goal === 'industry') {
+    recs.push('See <b>Industry Builder</b> tab. IIM Rohtak ePGDSM or GISB Mumbai are top Indian entry points. US/UK MS programmes open doors if budget allows.');
+    if (level !== 'school') {
+      recs.push('Your athletic background is a real asset for sports industry roles. Combine with MBA/MSM for fastest acceleration.');
+    }
+  }
+
+  // Unsure goal
+  if (goal === 'unsure') {
+    recs.push('Book a free 30-min call via <b>Toolkit → Talk to a mentor</b>. Mapping decisions with someone who has walked this path is faster than solo research.');
+  }
+
+  // Generic tail
+  if (steps.length === 0) steps.push('Lock your next 3-month target. Specific. Measurable. Discuss with your coach this week.');
+  if (gaps.length === 0) gaps.push('No obvious structural gap in your profile from this quick audit. Go deeper with a mentor conversation.');
+  if (recs.length === 0) recs.push('Browse the <b>Explore Pathways</b> tab by region to find fit.');
+
+  let out = '<div class="success-box" style="margin-bottom:.75rem"><strong>Your 2-minute audit read:</strong></div>';
+  out += '<div class="info-box" style="margin-bottom:.75rem"><strong>🔍 Gaps to close</strong><ul style="margin:.4rem 0 0 1.2rem;color:var(--sv-text)">' + gaps.map(g=>'<li>'+g+'</li>').join('') + '</ul></div>';
+  out += '<div class="success-box" style="margin-bottom:.75rem"><strong>🎯 Next steps (do these first)</strong><ul style="margin:.4rem 0 0 1.2rem;color:var(--sv-text)">' + steps.map(s=>'<li>'+s+'</li>').join('') + '</ul></div>';
+  out += '<div class="info-box"><strong>📍 Recommended pathways on this site</strong><ul style="margin:.4rem 0 0 1.2rem;color:var(--sv-text)">' + recs.map(r=>'<li>'+r+'</li>').join('') + '</ul></div>';
+  out += '<div class="warn-box" style="margin-top:.75rem">⚠️ This is a 6-question audit. Real decisions need a 30-min conversation. Book one via <b>Talk to a mentor</b> (same tab, next to this).</div>';
+  document.getElementById('audit-output').innerHTML = out;
+  return false;
+}
+
+// ── Application builder ──
+function buildApp(e) {
+  e.preventDefault();
+  const f = e.target;
+  const achievements = f.achievements.value.split(/\r?\n/).filter(x=>x.trim()).map(x=>'• '+x).join('\n');
+  const draft = `Subject: Prospective student-athlete — ${f.sport.value} — ${f.fullname.value}, India
+
+Dear Coach ${f.coachname.value.replace(/^(Coach )/i,'')},
+
+My name is ${f.fullname.value} and I am a prospective student-athlete from India interested in your programme at ${f.college.value}. I am writing to introduce myself and express my strong interest in competing for your team.
+
+ATHLETIC PROFILE
+Sport: ${f.sport.value}
+Recent achievements:
+${achievements}
+
+Highlight video: ${f.video.value}
+
+ACADEMIC PROFILE
+${f.academics.value}
+
+Full academic transcript + standardized test score reports available on request. I have (or will) register with the NCAA Eligibility Center.
+
+WHY ${f.college.value.toUpperCase()}?
+${f.why.value}
+
+NEXT STEPS
+I would welcome a brief conversation (15-20 min video call) at your convenience. I am available across your weekday afternoons (IST +10.5 to +13.5 hrs from PST). I am also happy to provide additional match footage, coach references, or academic records.
+
+Thank you for considering my application. I look forward to hearing from you.
+
+Warm regards,
+${f.fullname.value}
+${f.email.value}
+India
+`;
+  const out = '<div class="success-box"><strong>📧 Email draft generated. Copy, review, and edit before sending.</strong></div><pre style="background:var(--sv-off-white);padding:1rem;border-radius:8px;border:1px solid var(--sv-border);white-space:pre-wrap;font-family:monospace;font-size:.88rem;color:var(--sv-navy);margin-top:.5rem">'+ draft.replace(/</g,'&lt;') +'</pre><div class="warn-box" style="margin-top:.75rem">⚠️ Before sending: (1) Customise the WHY paragraph — coaches can spot templates. (2) Attach a 1-page PDF athletic résumé + transcript. (3) Send from a professional email (not a fun one). (4) Send between Mon-Thu, 9am-3pm their time. (5) Do NOT send the same email to 20 coaches — each one needs one customisation line.</div>';
+  document.getElementById('app-output').innerHTML = out;
+  return false;
+}
+
+// ── Pathway tabs within region (Explore) ──
+function showPW(region, pw, btn) {
+  const rp = document.getElementById('rp-' + region);
+  rp.querySelectorAll('.pwtab').forEach(t => t.classList.remove('active'));
+  rp.querySelectorAll('.pwpanel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pw-' + region + '-' + pw).classList.add('active');
+}
+
+// ── Industry region tabs ──
+function showIndustryRegion(id, btn) {
+  document.querySelectorAll('#pp-industry .rtab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#pp-industry .rpanel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('irp-' + id).classList.add('active');
+}
+
+// ── Industry pathway tabs ──
+function showIPW(region, pw, btn) {
+  const rp = document.getElementById('irp-' + region);
+  rp.querySelectorAll('.pwtab').forEach(t => t.classList.remove('active'));
+  rp.querySelectorAll('.pwpanel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ipw-' + region + '-' + pw).classList.add('active');
+}
+
+// ── Story card expand/collapse ──
+function togCard(head) {
+  const body = head.nextElementSibling;
+  const chev = head.querySelector('.chev');
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (chev) chev.classList.toggle('open', !isOpen);
+}
+
+// ── Story filter ──
+function filterStory(tag, btn) {
+  document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.story-stack .card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'block' : 'none';
+  });
+}
+
+// ── Form submission ──
+const form = document.getElementById('contact-form');
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (resp.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        alert('Something went wrong. Please email saumil.majmudar@gmail.com directly.');
+      }
+    } catch(err) {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+      alert('Network error. Please email saumil.majmudar@gmail.com directly.');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
